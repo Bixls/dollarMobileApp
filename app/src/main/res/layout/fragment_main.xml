@@ -36,4 +36,13 @@
         android:layout_below="@+id/equaltextview"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/lastSync"
+        android:id="@+id/lastSync"
+        android:layout_below="@+id/ToTextType"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

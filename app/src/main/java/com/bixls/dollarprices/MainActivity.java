@@ -1,6 +1,7 @@
 package com.bixls.dollarprices;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -31,6 +32,13 @@ public class MainActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+    Country mCountry=new Country("EGP",
+            Resources.getSystem().getString(R.string.EGP),
+            Resources.getSystem().getString(R.string.EGP_Full),
+            Resources.getSystem().getString(R.string.EGP_short),
+            Resources.getSystem().getDrawable(R.drawable.EGP));
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +71,15 @@ public class MainActivity extends ActionBarActivity
                         .replace(R.id.container, Settings.newInstance(position))
                         .commit();
                 break;
-           default:
+            case 2:
                fragmentManager.beginTransaction()
-                       .replace(R.id.container, PlaceholderFragment.newInstance(position))
+                       .replace(R.id.container, Calculator.newInstance(position))
                        .commit();
+                break;
+            case 3:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, allCont.newInstance(position))
+                        .commit();
                 break;
         }
     }
