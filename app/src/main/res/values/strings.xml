@@ -17,6 +17,13 @@
         <item>            بلدان اخرى</item>
     </string-array>
 
+    <string-array name="currency_array">
+        <item>الرئيسية</item>
+        <item>            اعدادات</item>
+        <item>حساب قيم التحويل</item>
+        <item>            بلدان اخرى</item>
+    </string-array>
+
     <string name="equal">=</string>
 
     <string name="lastSync">    اخر تحيث</string>

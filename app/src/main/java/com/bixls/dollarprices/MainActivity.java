@@ -1,6 +1,7 @@
 package com.bixls.dollarprices;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -19,6 +20,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -33,17 +36,16 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
-    Country mCountry=new Country("EGP",
-            Resources.getSystem().getString(R.string.EGP),
-            Resources.getSystem().getString(R.string.EGP_Full),
-            Resources.getSystem().getString(R.string.EGP_short),
-            Resources.getSystem().getDrawable(R.drawable.EGP));
+    private SharedPreferences mPreferences;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -53,6 +55,45 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+
+
+        ArrayList<Country> countries=new ArrayList<Country>();
+        countries.add(new Country(
+                "EGP",
+                getResources().getString(R.string.EGP),
+                getResources().getString(R.string.EGP_Full),
+                getResources().getString(R.string.EGP_short),
+                getResources().getDrawable(R.drawable.egp)
+        ));
+        countries.add(new Country(
+                "v",
+                getResources().getString(R.string.EGP),
+                getResources().getString(R.string.EGP_Full),
+                getResources().getString(R.string.EGP_short),
+                getResources().getDrawable(R.drawable.egp)
+        ));
+        countries.add(new Country(
+                "USD",
+                getResources().getString(R.string.EGP),
+                getResources().getString(R.string.EGP_Full),
+                getResources().getString(R.string.EGP_short),
+                getResources().getDrawable(R.drawable.egp)
+        ));
+        countries.add(new Country(
+                "KWD",
+                getResources().getString(R.string.EGP),
+                getResources().getString(R.string.EGP_Full),
+                getResources().getString(R.string.EGP_short),
+                getResources().getDrawable(R.drawable.egp)
+        ));
+
+        mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
+        CountryAdapter mCountryAdapter=new CountryAdapter(countries,mPreferences);
+
+
+
+
     }
 
     @Override
