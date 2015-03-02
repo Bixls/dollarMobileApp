@@ -13,7 +13,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
+        android:text="Large Text"
+        android:id="@+id/fromAmount"
+        android:layout_above="@+id/FromTextType"
+        android:layout_centerHorizontal="true"
+       />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
         android:id="@+id/FromTextType"
         android:layout_above="@+id/equaltextview"
         android:layout_centerHorizontal="true" />
@@ -31,26 +41,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:id="@+id/ToTextType"
+        android:text="Large Text"
+        android:id="@+id/toAmount"
         android:layout_below="@+id/equaltextview"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="-"
+        android:id="@+id/ToTextType"
+        android:layout_below="@+id/toAmount"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/lastSync"
         android:id="@+id/lastSync"
-        android:layout_below="@+id/ToTextType"
-        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Sync"
-        android:id="@+id/SyncButtom"
-        android:layout_below="@+id/SyncText"
+        android:layout_below="@+id/ToTextType"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -59,6 +70,18 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/SyncText"
         android:layout_below="@+id/lastSync"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+
+        android:text="-" />
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Sync"
+        android:id="@+id/SyncButtom"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/SyncText" />
 
 </RelativeLayout>

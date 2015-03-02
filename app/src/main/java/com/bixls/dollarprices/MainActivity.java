@@ -155,9 +155,18 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             try {
-
-
             ((TextView)(rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time",""));
+
+            Country countryFrom=mCountryAdapter.GetCountryByCode("USD");
+            Country countryTo=mCountryAdapter.GetCountryByCode("EGP");
+
+                ((TextView)(rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
+                ((TextView)(rootView.findViewById(R.id.fromAmount))).setText("1");
+
+                ((TextView)(rootView.findViewById(R.id.ToTextType))).setText(countryTo.CurShort);
+                ((TextView)(rootView.findViewById(R.id.toAmount))).setText(""+countryTo.Value);
+
+
             }catch (Exception e)
             {
                 Log.e("errore", ""+e);

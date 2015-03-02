@@ -93,9 +93,18 @@ public class CountryAdapter {
         editor.commit();
 
     }
-    double GetCurrencyByCode(String code){
-        double currency=0;
-        return currency;
+
+    Country GetCountryByCode(String code){
+
+        for(int i=0;i<Countries.size();i++){
+
+               if (Countries.get(i).Code==code)
+               {
+                   return Countries.get(i);
+               }
+            }
+
+        return  null;
     }
 
     //Get data
