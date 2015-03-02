@@ -2,25 +2,17 @@ package com.bixls.dollarprices;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity
@@ -58,38 +50,10 @@ public class MainActivity extends ActionBarActivity
 
 
 
-        ArrayList<Country> countries=new ArrayList<Country>();
-        countries.add(new Country(
-                "EGP",
-                getResources().getString(R.string.EGP),
-                getResources().getString(R.string.EGP_Full),
-                getResources().getString(R.string.EGP_short),
-                getResources().getDrawable(R.drawable.egp)
-        ));
-        countries.add(new Country(
-                "v",
-                getResources().getString(R.string.EGP),
-                getResources().getString(R.string.EGP_Full),
-                getResources().getString(R.string.EGP_short),
-                getResources().getDrawable(R.drawable.egp)
-        ));
-        countries.add(new Country(
-                "USD",
-                getResources().getString(R.string.EGP),
-                getResources().getString(R.string.EGP_Full),
-                getResources().getString(R.string.EGP_short),
-                getResources().getDrawable(R.drawable.egp)
-        ));
-        countries.add(new Country(
-                "KWD",
-                getResources().getString(R.string.EGP),
-                getResources().getString(R.string.EGP_Full),
-                getResources().getString(R.string.EGP_short),
-                getResources().getDrawable(R.drawable.egp)
-        ));
+        CountryList countryList=new CountryList();
 
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
-        CountryAdapter mCountryAdapter=new CountryAdapter(countries,mPreferences);
+        CountryAdapter mCountryAdapter=new CountryAdapter( countryList.init(getResources()),mPreferences);
 
 
 
@@ -104,7 +68,7 @@ public class MainActivity extends ActionBarActivity
         switch (position) {
             case 0:
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, PlaceholderFragment.newInstance(position))
+                    .replace(R.id.container, HomeFragment.newInstance(position))
                     .commit();
                 break;
             case 1:
@@ -169,19 +133,19 @@ public class MainActivity extends ActionBarActivity
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class HomeFragment extends Fragment {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
+        public static HomeFragment newInstance(int sectionNumber) {
+            HomeFragment fragment = new HomeFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             return fragment;
         }
 
-        public PlaceholderFragment() {
+        public HomeFragment() {
         }
 
         @Override

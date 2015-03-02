@@ -49,4 +49,23 @@
        الجنيه المصري
     </string>
 
+     <string name="SAR">
+السعودية
+    </string>
+    <string name="SAR_short">
+ريال
+    </string>
+    <string name="SAR_Full">
+الريال السعودي
+    </string>
+
+         <string name="KWD">
+الكويت
+    </string>
+    <string name="KWD_short">
+دينار
+    </string>
+    <string name="KWD_Full">
+الدينار الكويتي
+    </string>
 </resources>
