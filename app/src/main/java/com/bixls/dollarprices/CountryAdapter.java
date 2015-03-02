@@ -19,7 +19,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -28,12 +31,13 @@ import java.util.HashMap;
 public class CountryAdapter {
     private SharedPreferences mPreferences;
 
+    Context context;
    ArrayList<Country> Countries=new ArrayList<Country>();
 
-     CountryAdapter( ArrayList<Country> countries,SharedPreferences Mpreferences)
+     CountryAdapter( ArrayList<Country> countries,SharedPreferences Mpreferences,Context cn)
     {
         mPreferences=Mpreferences;
-
+        context=cn;
         Countries=countries;
       if(mPreferences.contains("valid"))
       {
@@ -81,8 +85,10 @@ public class CountryAdapter {
                 }catch (Exception e)
                 {
                 }
-
         }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String currentDateandTime = sdf.format(new Date());
+        editor.putString("time",currentDateandTime);
         editor.putString("valid","true");
         editor.commit();
 
@@ -94,6 +100,19 @@ public class CountryAdapter {
 
     //Get data
     private class GetDataFromServer extends AsyncTask<Object, Void, JSONObject> {
+
+        ProgressDialog progDailog = new ProgressDialog(context);
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progDailog.setMessage("Loading...");
+            progDailog.setIndeterminate(false);
+            progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progDailog.setCancelable(true);
+            progDailog.show();
+        }
+
+
+
         @Override
         protected JSONObject doInBackground(Object... arg0) {
             return GET("http://www.dollar-prices-today.com/api.php");
@@ -103,7 +122,7 @@ public class CountryAdapter {
         protected void onPostExecute(JSONObject result) {
 
             handleResponse(result);
-
+            progDailog.cancel();
         }
 
     }

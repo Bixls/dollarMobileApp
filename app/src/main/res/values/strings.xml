@@ -25,7 +25,9 @@
     </string-array>
 
     <string name="equal">=</string>
-
+    <string name="Sync">
+        تحديث
+    </string>
     <string name="lastSync">    اخر تحيث</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="from">
@@ -37,6 +39,15 @@
 
         <string name="calculate">
 حساب
+    </string>
+ <string name="USD">
+الولايات المتحده الامريكية
+    </string>
+    <string name="USD_short">
+دولار
+    </string>
+    <string name="USD_Full">
+دولارامريكي
     </string>
 
     <string name="EGP">

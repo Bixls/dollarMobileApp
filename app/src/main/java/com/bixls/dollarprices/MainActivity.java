@@ -7,12 +7,15 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity
@@ -28,8 +31,8 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
-    private SharedPreferences mPreferences;
-
+    static   private SharedPreferences mPreferences;
+    static   private CountryAdapter mCountryAdapter;
 
 
     @Override
@@ -53,12 +56,11 @@ public class MainActivity extends ActionBarActivity
         CountryList countryList=new CountryList();
 
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
-        CountryAdapter mCountryAdapter=new CountryAdapter( countryList.init(getResources()),mPreferences);
 
-
-
+        mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,MainActivity.this);
 
     }
+
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -152,6 +154,21 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            try {
+
+
+            ((TextView)(rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time",""));
+            }catch (Exception e)
+            {
+                Log.e("errore", ""+e);
+            }
+            ((Button)(rootView.findViewById(R.id.SyncButtom))).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mCountryAdapter.SyncValues();
+                }
+            });
+
             return rootView;
         }
 

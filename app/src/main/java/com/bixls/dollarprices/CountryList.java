@@ -12,6 +12,13 @@ public class CountryList {
   public   ArrayList<Country>  init(Resources res)
     {
     ArrayList<Country> countries=new ArrayList<Country>();
+        countries.add(new Country(
+                "USD",
+                res.getString(R.string.USD),
+                res.getString(R.string.USD_Full),
+                res.getString(R.string.USD_short),
+                res.getDrawable(R.drawable.egp)
+        ));
     countries.add(new Country(
             "EGP",
             res.getString(R.string.EGP),
