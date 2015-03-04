@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -32,6 +33,7 @@ public class CountryAdapter {
     private SharedPreferences mPreferences;
 
     Context context;
+    View RootView;
    ArrayList<Country> Countries=new ArrayList<Country>();
 
      CountryAdapter( ArrayList<Country> countries,SharedPreferences Mpreferences,Context cn)
@@ -65,6 +67,11 @@ public class CountryAdapter {
 
         return CodeList;
     }
+    void SyncValuesWithInterface(View rootView)
+    {
+        SyncValues();
+        RootView=rootView;
+    }
     void SyncValues()
     {
         GetDataFromServer getDataFromServer = new GetDataFromServer();
@@ -91,6 +98,10 @@ public class CountryAdapter {
         editor.putString("time",currentDateandTime);
         editor.putString("valid","true");
         editor.commit();
+        if(RootView!=null)
+        {
+            MainActivity.UpdateView(RootView);
+        }
 
     }
 

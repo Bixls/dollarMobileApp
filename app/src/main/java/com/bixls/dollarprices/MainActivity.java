@@ -132,6 +132,26 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
+    public static void UpdateView(View rootView){
+        try {
+            ((TextView)(rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time",""));
+
+            Country countryFrom=mCountryAdapter.GetCountryByCode("USD");
+            Country countryTo=mCountryAdapter.GetCountryByCode("EGP");
+
+            ((TextView)(rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
+            ((TextView)(rootView.findViewById(R.id.fromAmount))).setText("1");
+
+            ((TextView)(rootView.findViewById(R.id.ToTextType))).setText(countryTo.CurShort);
+            ((TextView)(rootView.findViewById(R.id.toAmount))).setText(""+countryTo.Value);
+
+
+        }catch (Exception e)
+        {
+            Log.e("errore", ""+e);
+        }
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -153,28 +173,14 @@ public class MainActivity extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            try {
-            ((TextView)(rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time",""));
+            final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-            Country countryFrom=mCountryAdapter.GetCountryByCode("USD");
-            Country countryTo=mCountryAdapter.GetCountryByCode("EGP");
+            UpdateView(rootView);
 
-                ((TextView)(rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
-                ((TextView)(rootView.findViewById(R.id.fromAmount))).setText("1");
-
-                ((TextView)(rootView.findViewById(R.id.ToTextType))).setText(countryTo.CurShort);
-                ((TextView)(rootView.findViewById(R.id.toAmount))).setText(""+countryTo.Value);
-
-
-            }catch (Exception e)
-            {
-                Log.e("errore", ""+e);
-            }
             ((Button)(rootView.findViewById(R.id.SyncButtom))).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mCountryAdapter.SyncValues();
+                    mCountryAdapter.SyncValuesWithInterface(rootView);
                 }
             });
 
