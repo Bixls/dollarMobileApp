@@ -2,13 +2,24 @@ package com.bixls.dollarprices;
 
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 
 /**
@@ -16,8 +27,15 @@ import android.widget.Spinner;
  */
 public class Calculator extends Fragment {
 
+    static   private CountryAdapter mCountryAdapter;
+    static   private SharedPreferences mPreferences;
+    static   private Context context;
+
+
     private static final String ARG_SECTION_NUMBER = "section_number";
-    public static Calculator newInstance(int sectionNumber) {
+    public static Calculator newInstance(int sectionNumber,SharedPreferences preferences,Context mcontext) {
+        mPreferences=preferences;
+        context=mcontext;
         Calculator fragment = new Calculator();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -33,23 +51,67 @@ public class Calculator extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
-              Spinner spinner = (Spinner)     rootView.findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.currency_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+
+        CountryList countryList=new CountryList();
 
 
-        Spinner spinner2 = (Spinner)     rootView.findViewById(R.id.spinner2);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(getActivity(),
-                R.array.currency_array, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(adapter2);
+        mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,context);
+
+        ArrayList<String> arrayList=mCountryAdapter.GetList(mCountryAdapter.GetCountryByCode(""), "");
+
+         final  View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
+
+
+        final Spinner spinner1 = (Spinner)     rootView.findViewById(R.id.spinner);
+        final Spinner spinner2 = (Spinner)     rootView.findViewById(R.id.spinner2);
+
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        setSpinner(rootView, spinner1, "");
+        setSpinner(rootView,spinner2,"");
+
+        ((Button) rootView.findViewById(R.id.Calc)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Country from=mCountryAdapter.GetCountryByCurFull(spinner1.getSelectedItem().toString());
+                Country to=mCountryAdapter.GetCountryByCurFull(spinner2.getSelectedItem().toString());
+                double CalcAmount=Double.parseDouble(((EditText) rootView.findViewById(R.id.CalcAmount)).getText().toString());
+                ( (TextView) rootView.findViewById(R.id.Calc_Value)).setText(Calculate(CalcAmount,from,to)+"");
+
+            }
+        });
+
 
         return rootView;
 
     }
+    public double Calculate(double amount,Country From,Country to){
+
+        double ratio=to.Value/From.Value;
+        return amount*ratio;
+    }
+    public void setSpinner(View rootView,Spinner spinner,String Except)
+    {
+        ArrayList<String> arrayList=mCountryAdapter.GetList(mCountryAdapter.GetCountryByCode(Except), "noType");
+        ArrayAdapter<String>  adapter = new ArrayAdapter<String>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                arrayList );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

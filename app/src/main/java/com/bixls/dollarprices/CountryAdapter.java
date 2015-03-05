@@ -64,6 +64,13 @@ public class CountryAdapter {
     public ArrayList<String> GetList(Country Except,String type)
     {
         ArrayList<String> CodeList=new ArrayList<String>();
+        for(int i=0;i<Countries.size();i++)
+        {
+            if(Countries.get(i)!=Except)
+            {
+                CodeList.add(Countries.get(i).CurFull);
+            }
+        }
 
         return CodeList;
     }
@@ -117,6 +124,19 @@ public class CountryAdapter {
 
         return  null;
     }
+    Country GetCountryByCurFull(String curFull){
+
+        for(int i=0;i<Countries.size();i++){
+
+            if (Countries.get(i).CurFull==curFull)
+            {
+                return Countries.get(i);
+            }
+        }
+
+        return  null;
+    }
+
 
     //Get data
     private class GetDataFromServer extends AsyncTask<Object, Void, JSONObject> {

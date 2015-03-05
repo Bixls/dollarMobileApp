@@ -80,7 +80,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 2:
                fragmentManager.beginTransaction()
-                       .replace(R.id.container, Calculator.newInstance(position))
+                       .replace(R.id.container, Calculator.newInstance(position,mPreferences,MainActivity.this))
                        .commit();
                 break;
             case 3:
