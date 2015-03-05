@@ -57,13 +57,20 @@ public class MainActivity extends ActionBarActivity
 
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
 
+        if(!(mPreferences.contains("CFrom")&&mPreferences.contains("CTo")))
+        {
+           onNavigationDrawerItemSelected(1);
+        }
+
+
         mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,MainActivity.this);
 
     }
 
 
+
     @Override
-    public void onNavigationDrawerItemSelected(int position) {
+     public  void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -75,7 +82,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 1:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, Settings.newInstance(position))
+                        .replace(R.id.container, Settings.newInstance(position,mPreferences,MainActivity.this))
                         .commit();
                 break;
             case 2:
@@ -133,23 +140,18 @@ public class MainActivity extends ActionBarActivity
     }
 
     public static void UpdateView(View rootView){
-        try {
+
             ((TextView)(rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time",""));
-
-            Country countryFrom=mCountryAdapter.GetCountryByCode("USD");
-            Country countryTo=mCountryAdapter.GetCountryByCode("EGP");
-
+            Country countryFrom=mCountryAdapter.GetCountryByCode(mPreferences.getString("CFrom",""));
+            Country countryTo=mCountryAdapter.GetCountryByCode(mPreferences.getString("CTo",""));
+            if(countryFrom!=null&&countryTo!=null){
+            double ratio=countryTo.Value/countryFrom.Value;
             ((TextView)(rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
             ((TextView)(rootView.findViewById(R.id.fromAmount))).setText("1");
-
             ((TextView)(rootView.findViewById(R.id.ToTextType))).setText(countryTo.CurShort);
-            ((TextView)(rootView.findViewById(R.id.toAmount))).setText(""+countryTo.Value);
+            ((TextView)(rootView.findViewById(R.id.toAmount))).setText(""+ratio);
+            }
 
-
-        }catch (Exception e)
-        {
-            Log.e("errore", ""+e);
-        }
     }
 
     /**

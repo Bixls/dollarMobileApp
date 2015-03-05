@@ -41,6 +41,20 @@ public class CountryList {
             res.getDrawable(R.drawable.kwd)
     ));
 
+        countries.add(new Country(
+                "QAR",
+                res.getString(R.string.QAR),
+                res.getString(R.string.QAR_Full),
+                res.getString(R.string.QAR_short),
+                res.getDrawable(R.drawable.qar)
+        ));
+        countries.add(new Country(
+                "JOD",
+                res.getString(R.string.JOD),
+                res.getString(R.string.JOD_Full),
+                res.getString(R.string.JOD_short),
+                res.getDrawable(R.drawable.jod)
+        ));
         return countries;
     }
 }

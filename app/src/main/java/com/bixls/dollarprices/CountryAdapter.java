@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -61,15 +62,14 @@ public class CountryAdapter {
       }
     }
 
-    public ArrayList<String> GetList(Country Except,String type)
+    public ArrayList<String> GetList()
     {
         ArrayList<String> CodeList=new ArrayList<String>();
         for(int i=0;i<Countries.size();i++)
         {
-            if(Countries.get(i)!=Except)
-            {
+
                 CodeList.add(Countries.get(i).CurFull);
-            }
+
         }
 
         return CodeList;
@@ -105,6 +105,7 @@ public class CountryAdapter {
         editor.putString("time",currentDateandTime);
         editor.putString("valid","true");
         editor.commit();
+        Toast.makeText(context, context.getResources().getString(R.string.SaveMsg), Toast.LENGTH_SHORT).show();
         if(RootView!=null)
         {
             MainActivity.UpdateView(RootView);
@@ -116,7 +117,7 @@ public class CountryAdapter {
 
         for(int i=0;i<Countries.size();i++){
 
-               if (Countries.get(i).Code==code)
+               if (code == Countries.get(i).Code)
                {
                    return Countries.get(i);
                }

@@ -17,16 +17,12 @@
         <item>            بلدان اخرى</item>
     </string-array>
 
-    <string-array name="currency_array">
-        <item>الرئيسية</item>
-        <item>            اعدادات</item>
-        <item>حساب قيم التحويل</item>
-        <item>            بلدان اخرى</item>
-    </string-array>
-
     <string name="equal">=</string>
     <string name="Sync">
         تحديث
+    </string>
+      <string name="SyncMsg">
+تم التحديث بنجاح
     </string>
     <string name="lastSync">    اخر تحيث</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -40,6 +36,21 @@
         <string name="calculate">
 حساب
     </string>
+
+
+         <string name="HomeSettings">
+اعدادات الرئيسية
+    </string>
+
+             <string name="Save">
+حفظ
+    </string>
+
+         <string name="SaveMsg">
+تم الحفظ بنجاح
+    </string>
+
+
  <string name="USD">
 الولايات المتحده الامريكية
     </string>
@@ -79,4 +90,28 @@
     <string name="KWD_Full">
 الدينار الكويتي
     </string>
+
+
+         <string name="QAR">
+قطر
+    </string>
+    <string name="QAR_short">
+ريال
+    </string>
+    <string name="QAR_Full">
+الريال القطري
+    </string>
+
+
+         <string name="JOD">
+الاردن
+    </string>
+    <string name="JOD_short">
+دينار
+    </string>
+    <string name="JOD_Full">
+الدينار الاردني
+    </string>
+
+
 </resources>

@@ -50,15 +50,8 @@ public class Calculator extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         CountryList countryList=new CountryList();
-
-
         mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,context);
-
-        ArrayList<String> arrayList=mCountryAdapter.GetList(mCountryAdapter.GetCountryByCode(""), "");
-
          final  View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
 
 
@@ -77,17 +70,18 @@ public class Calculator extends Fragment {
             }
         });
 
-        setSpinner(rootView, spinner1, "");
-        setSpinner(rootView,spinner2,"");
+        setSpinner(spinner1);
+        setSpinner(spinner2);
 
         ((Button) rootView.findViewById(R.id.Calc)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Country from=mCountryAdapter.GetCountryByCurFull(spinner1.getSelectedItem().toString());
-                Country to=mCountryAdapter.GetCountryByCurFull(spinner2.getSelectedItem().toString());
-                double CalcAmount=Double.parseDouble(((EditText) rootView.findViewById(R.id.CalcAmount)).getText().toString());
-                ( (TextView) rootView.findViewById(R.id.Calc_Value)).setText(Calculate(CalcAmount,from,to)+"");
+
+                    Country from = mCountryAdapter.GetCountryByCurFull(spinner1.getSelectedItem().toString());
+                    Country to = mCountryAdapter.GetCountryByCurFull(spinner2.getSelectedItem().toString());
+                    double CalcAmount = Double.parseDouble(((EditText) rootView.findViewById(R.id.CalcAmount)).getText().toString());
+                    ((TextView) rootView.findViewById(R.id.Calc_Value)).setText(Calculate(CalcAmount, from, to) + "");
 
             }
         });
@@ -101,9 +95,9 @@ public class Calculator extends Fragment {
         double ratio=to.Value/From.Value;
         return amount*ratio;
     }
-    public void setSpinner(View rootView,Spinner spinner,String Except)
+    public void setSpinner(Spinner spinner)
     {
-        ArrayList<String> arrayList=mCountryAdapter.GetList(mCountryAdapter.GetCountryByCode(Except), "noType");
+        ArrayList<String> arrayList=mCountryAdapter.GetList();
         ArrayAdapter<String>  adapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
