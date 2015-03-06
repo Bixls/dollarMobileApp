@@ -89,7 +89,7 @@ public class Settings extends Fragment {
 
     public void setSpinner(Spinner spinner,Country Except)
     {
-        ArrayList<String> arrayList=mCountryAdapter.GetList(Except);
+        ArrayList<String> arrayList=mCountryAdapter.GetList(Except,"CurFull");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,

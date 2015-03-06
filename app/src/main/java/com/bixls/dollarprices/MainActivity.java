@@ -92,7 +92,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 3:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, allCont.newInstance(position))
+                        .replace(R.id.container, allCont.newInstance(position,mPreferences,MainActivity.this))
                         .commit();
                 break;
         }
@@ -142,8 +142,8 @@ public class MainActivity extends ActionBarActivity
     public static void UpdateView(View rootView){
 
             ((TextView)(rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time",""));
-        Log.e("to",mPreferences.getString("CFrom",""));
-        Log.e("to",mPreferences.getString("CTo",""));
+            Log.e("to",mPreferences.getString("CFrom",""));
+            Log.e("to",mPreferences.getString("CTo",""));
             Country countryFrom=mCountryAdapter.GetCountryByCode(mPreferences.getString("CFrom",""));
             Country countryTo=mCountryAdapter.GetCountryByCode(mPreferences.getString("CTo",""));
 

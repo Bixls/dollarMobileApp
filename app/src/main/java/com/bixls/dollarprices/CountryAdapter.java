@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -62,19 +63,43 @@ public class CountryAdapter {
       }
     }
 
-    public ArrayList<String> GetList(Country Except)
+    public ArrayList<String> GetList(Country Except,String Type)
     {
-        ArrayList<String> CodeList=new ArrayList<String>();
-        for(int i=0;i<Countries.size();i++)
-        {
-            if(Countries.get(i)!=Except) {
-                CodeList.add(Countries.get(i).CurFull);
+        ArrayList<String> CodeList = new ArrayList<String>();
+
+        switch (Type) {
+            case "CurShort":
+        for (int i = 0; i < Countries.size(); i++) {
+            if (Countries.get(i) != Except) {
+                CodeList.add(Countries.get(i).CurShort);
             }
         }
-
-
         return CodeList;
+            case "Value":
+                for (int i = 0; i < Countries.size(); i++) {
+                    if (Countries.get(i) != Except) {
+                        CodeList.add(Countries.get(i).Value+"");
+                    }
+                }
+                return CodeList;
+            case "Name":
+                for (int i = 0; i < Countries.size(); i++) {
+                    if (Countries.get(i) != Except) {
+                        CodeList.add(Countries.get(i).Name);
+                    }
+                }
+                return CodeList;
+            default:
+                for (int i = 0; i < Countries.size(); i++) {
+                    if (Countries.get(i) != Except) {
+                        CodeList.add(Countries.get(i).CurFull);
+                    }
+                }
+                return CodeList;
     }
+    }
+
+
     void SyncValuesWithInterface(View rootView)
     {
         SyncValues();
