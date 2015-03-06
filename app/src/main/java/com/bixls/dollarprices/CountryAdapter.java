@@ -62,15 +62,16 @@ public class CountryAdapter {
       }
     }
 
-    public ArrayList<String> GetList()
+    public ArrayList<String> GetList(Country Except)
     {
         ArrayList<String> CodeList=new ArrayList<String>();
         for(int i=0;i<Countries.size();i++)
         {
-
+            if(Countries.get(i)!=Except) {
                 CodeList.add(Countries.get(i).CurFull);
-
+            }
         }
+
 
         return CodeList;
     }
@@ -115,9 +116,10 @@ public class CountryAdapter {
 
     Country GetCountryByCode(String code){
 
+
         for(int i=0;i<Countries.size();i++){
 
-               if (code == Countries.get(i).Code)
+               if (code.equals(Countries.get(i).Code))
                {
                    return Countries.get(i);
                }
@@ -129,7 +131,7 @@ public class CountryAdapter {
 
         for(int i=0;i<Countries.size();i++){
 
-            if (Countries.get(i).CurFull==curFull)
+            if (Countries.get(i).CurFull.equals(curFull))
             {
                 return Countries.get(i);
             }

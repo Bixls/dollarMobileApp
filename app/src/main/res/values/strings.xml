@@ -14,7 +14,10 @@
         <item>الرئيسية</item>
         <item>            اعدادات</item>
         <item>حساب قيم التحويل</item>
-        <item>            بلدان اخرى</item>
+      <item>
+   اسعار الدولار
+      </item>
+
     </string-array>
 
     <string name="equal">=</string>

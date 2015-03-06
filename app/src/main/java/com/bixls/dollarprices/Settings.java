@@ -59,8 +59,8 @@ public class Settings extends Fragment {
         final Spinner spinner1 = (Spinner)     rootView.findViewById(R.id.spinner3);
         final Spinner spinner2 = (Spinner)     rootView.findViewById(R.id.spinner4);
 
-        setSpinner(spinner1);
-        setSpinner(spinner2);
+        setSpinner(spinner1,null);
+        setSpinner(spinner2,mCountryAdapter.GetCountryByCode("USD"));
 
         ((Button) rootView.findViewById(R.id.Save)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,9 +87,9 @@ public class Settings extends Fragment {
         return rootView;
     }
 
-    public void setSpinner(Spinner spinner)
+    public void setSpinner(Spinner spinner,Country Except)
     {
-        ArrayList<String> arrayList=mCountryAdapter.GetList();
+        ArrayList<String> arrayList=mCountryAdapter.GetList(Except);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,

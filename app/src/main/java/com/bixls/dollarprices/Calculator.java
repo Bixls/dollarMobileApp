@@ -62,6 +62,7 @@ public class Calculator extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                updateView(spinner1,spinner2);
             }
 
             @Override
@@ -70,8 +71,8 @@ public class Calculator extends Fragment {
             }
         });
 
-        setSpinner(spinner1);
-        setSpinner(spinner2);
+        setSpinner(spinner1,null);
+        setSpinner(spinner2,mCountryAdapter.GetCountryByCode("USD"));
 
         ((Button) rootView.findViewById(R.id.Calc)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,14 +91,20 @@ public class Calculator extends Fragment {
         return rootView;
 
     }
+    void updateView(Spinner A,Spinner B)
+    {
+        Country except=mCountryAdapter.GetCountryByCurFull(A.getSelectedItem().toString());
+        setSpinner(B,except);
+
+    }
     public double Calculate(double amount,Country From,Country to){
 
         double ratio=to.Value/From.Value;
         return amount*ratio;
     }
-    public void setSpinner(Spinner spinner)
+    public void setSpinner(Spinner spinner,Country Except)
     {
-        ArrayList<String> arrayList=mCountryAdapter.GetList();
+        ArrayList<String> arrayList=mCountryAdapter.GetList(Except);
         ArrayAdapter<String>  adapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,

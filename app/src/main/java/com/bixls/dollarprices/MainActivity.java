@@ -62,8 +62,8 @@ public class MainActivity extends ActionBarActivity
            onNavigationDrawerItemSelected(1);
         }
 
-
         mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,MainActivity.this);
+
 
     }
 
@@ -142,8 +142,11 @@ public class MainActivity extends ActionBarActivity
     public static void UpdateView(View rootView){
 
             ((TextView)(rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time",""));
+        Log.e("to",mPreferences.getString("CFrom",""));
+        Log.e("to",mPreferences.getString("CTo",""));
             Country countryFrom=mCountryAdapter.GetCountryByCode(mPreferences.getString("CFrom",""));
             Country countryTo=mCountryAdapter.GetCountryByCode(mPreferences.getString("CTo",""));
+
             if(countryFrom!=null&&countryTo!=null){
             double ratio=countryTo.Value/countryFrom.Value;
             ((TextView)(rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
