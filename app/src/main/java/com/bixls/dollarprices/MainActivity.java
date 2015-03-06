@@ -57,13 +57,20 @@ public class MainActivity extends ActionBarActivity
 
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
 
+        if(!(mPreferences.contains("CFrom")&&mPreferences.contains("CTo")))
+        {
+           onNavigationDrawerItemSelected(1);
+        }
+
         mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,MainActivity.this);
+
 
     }
 
 
+
     @Override
-    public void onNavigationDrawerItemSelected(int position) {
+     public  void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -75,12 +82,12 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 1:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, Settings.newInstance(position))
+                        .replace(R.id.container, Settings.newInstance(position,mPreferences,MainActivity.this))
                         .commit();
                 break;
             case 2:
                fragmentManager.beginTransaction()
-                       .replace(R.id.container, Calculator.newInstance(position))
+                       .replace(R.id.container, Calculator.newInstance(position,mPreferences,MainActivity.this))
                        .commit();
                 break;
             case 3:
@@ -132,6 +139,24 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
+    public static void UpdateView(View rootView){
+
+            ((TextView)(rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time",""));
+        Log.e("to",mPreferences.getString("CFrom",""));
+        Log.e("to",mPreferences.getString("CTo",""));
+            Country countryFrom=mCountryAdapter.GetCountryByCode(mPreferences.getString("CFrom",""));
+            Country countryTo=mCountryAdapter.GetCountryByCode(mPreferences.getString("CTo",""));
+
+            if(countryFrom!=null&&countryTo!=null){
+            double ratio=countryTo.Value/countryFrom.Value;
+            ((TextView)(rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
+            ((TextView)(rootView.findViewById(R.id.fromAmount))).setText("1");
+            ((TextView)(rootView.findViewById(R.id.ToTextType))).setText(countryTo.CurShort);
+            ((TextView)(rootView.findViewById(R.id.toAmount))).setText(""+ratio);
+            }
+
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -153,28 +178,14 @@ public class MainActivity extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            try {
-            ((TextView)(rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time",""));
+            final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-            Country countryFrom=mCountryAdapter.GetCountryByCode("USD");
-            Country countryTo=mCountryAdapter.GetCountryByCode("EGP");
+            UpdateView(rootView);
 
-                ((TextView)(rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
-                ((TextView)(rootView.findViewById(R.id.fromAmount))).setText("1");
-
-                ((TextView)(rootView.findViewById(R.id.ToTextType))).setText(countryTo.CurShort);
-                ((TextView)(rootView.findViewById(R.id.toAmount))).setText(""+countryTo.Value);
-
-
-            }catch (Exception e)
-            {
-                Log.e("errore", ""+e);
-            }
             ((Button)(rootView.findViewById(R.id.SyncButtom))).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mCountryAdapter.SyncValues();
+                    mCountryAdapter.SyncValuesWithInterface(rootView);
                 }
             });
 

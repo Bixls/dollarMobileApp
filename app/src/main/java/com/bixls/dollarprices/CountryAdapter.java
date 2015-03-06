@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -32,6 +34,7 @@ public class CountryAdapter {
     private SharedPreferences mPreferences;
 
     Context context;
+    View RootView;
    ArrayList<Country> Countries=new ArrayList<Country>();
 
      CountryAdapter( ArrayList<Country> countries,SharedPreferences Mpreferences,Context cn)
@@ -59,11 +62,23 @@ public class CountryAdapter {
       }
     }
 
-    public ArrayList<String> GetList(Country Except,String type)
+    public ArrayList<String> GetList(Country Except)
     {
         ArrayList<String> CodeList=new ArrayList<String>();
+        for(int i=0;i<Countries.size();i++)
+        {
+            if(Countries.get(i)!=Except) {
+                CodeList.add(Countries.get(i).CurFull);
+            }
+        }
+
 
         return CodeList;
+    }
+    void SyncValuesWithInterface(View rootView)
+    {
+        SyncValues();
+        RootView=rootView;
     }
     void SyncValues()
     {
@@ -91,14 +106,20 @@ public class CountryAdapter {
         editor.putString("time",currentDateandTime);
         editor.putString("valid","true");
         editor.commit();
+        Toast.makeText(context, context.getResources().getString(R.string.SaveMsg), Toast.LENGTH_SHORT).show();
+        if(RootView!=null)
+        {
+            MainActivity.UpdateView(RootView);
+        }
 
     }
 
     Country GetCountryByCode(String code){
 
+
         for(int i=0;i<Countries.size();i++){
 
-               if (Countries.get(i).Code==code)
+               if (code.equals(Countries.get(i).Code))
                {
                    return Countries.get(i);
                }
@@ -106,6 +127,19 @@ public class CountryAdapter {
 
         return  null;
     }
+    Country GetCountryByCurFull(String curFull){
+
+        for(int i=0;i<Countries.size();i++){
+
+            if (Countries.get(i).CurFull.equals(curFull))
+            {
+                return Countries.get(i);
+            }
+        }
+
+        return  null;
+    }
+
 
     //Get data
     private class GetDataFromServer extends AsyncTask<Object, Void, JSONObject> {
