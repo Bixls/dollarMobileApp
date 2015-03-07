@@ -1,6 +1,7 @@
 package com.bixls.dollarprices;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -59,10 +60,14 @@ public class MainActivity extends ActionBarActivity
 
         if(!(mPreferences.contains("CFrom")&&mPreferences.contains("CTo")))
         {
-           onNavigationDrawerItemSelected(1);
+            Intent intent = new Intent(MainActivity.this, SettingFirstTime.class);
+            startActivity(intent);
+            finish();
         }
 
         mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,MainActivity.this);
+
+
 
 
     }
@@ -141,19 +146,19 @@ public class MainActivity extends ActionBarActivity
 
     public static void UpdateView(View rootView){
 
-            ((TextView)(rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time",""));
-            Log.e("to",mPreferences.getString("CFrom",""));
-            Log.e("to",mPreferences.getString("CTo",""));
-            Country countryFrom=mCountryAdapter.GetCountryByCode(mPreferences.getString("CFrom",""));
-            Country countryTo=mCountryAdapter.GetCountryByCode(mPreferences.getString("CTo",""));
+        if((mPreferences.contains("CFrom")&&mPreferences.contains("CTo"))) {
+            ((TextView) (rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time", ""));
+            Country countryFrom = mCountryAdapter.GetCountryByCode(mPreferences.getString("CFrom", ""));
+            Country countryTo = mCountryAdapter.GetCountryByCode(mPreferences.getString("CTo", ""));
 
-            if(countryFrom!=null&&countryTo!=null){
-            double ratio=countryTo.Value/countryFrom.Value;
-            ((TextView)(rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
-            ((TextView)(rootView.findViewById(R.id.fromAmount))).setText("1");
-            ((TextView)(rootView.findViewById(R.id.ToTextType))).setText(countryTo.CurShort);
-            ((TextView)(rootView.findViewById(R.id.toAmount))).setText(""+ratio);
+            if (countryFrom != null && countryTo != null) {
+                double ratio = countryTo.Value / countryFrom.Value;
+                ((TextView) (rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
+                ((TextView) (rootView.findViewById(R.id.fromAmount))).setText("1");
+                ((TextView) (rootView.findViewById(R.id.ToTextType))).setText(countryTo.CurShort);
+                ((TextView) (rootView.findViewById(R.id.toAmount))).setText("" + ratio);
             }
+        }
 
     }
 

@@ -22,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -149,6 +150,19 @@ public class CountryAdapter {
                    return Countries.get(i);
                }
             }
+
+        return  null;
+    }
+    Country GetCountryByName(String code){
+
+
+        for(int i=0;i<Countries.size();i++){
+
+            if (code.equals(Countries.get(i).Name))
+            {
+                return Countries.get(i);
+            }
+        }
 
         return  null;
     }
