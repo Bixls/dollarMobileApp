@@ -3,6 +3,7 @@ package com.bixls.dollarprices;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -15,8 +16,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,10 +33,12 @@ public class Settings extends Fragment {
     static   private CountryAdapter mCountryAdapter;
     static   private SharedPreferences mPreferences;
     static   private Context context;
+    static int Type;
 
     private static final String ARG_SECTION_NUMBER = "section_number";
     public static Settings newInstance(int sectionNumber,SharedPreferences preferences,Context mcontext) {
         mPreferences=preferences;
+        Type=sectionNumber;
         context=mcontext;
         Settings fragment = new Settings();
         Bundle args = new Bundle();
@@ -47,14 +52,17 @@ public class Settings extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         CountryList countryList=new CountryList();
         mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,context);
 
         final  View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
-
+        if(Type==-1)
+        {
+            ((TextView)rootView.findViewById(R.id.textVie4)).setVisibility(View.VISIBLE);
+        }
 
         final Spinner spinner1 = (Spinner)     rootView.findViewById(R.id.spinner3);
         final Spinner spinner2 = (Spinner)     rootView.findViewById(R.id.spinner4);
@@ -65,6 +73,7 @@ public class Settings extends Fragment {
         ((Button) rootView.findViewById(R.id.Save)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Country from = mCountryAdapter.GetCountryByCurFull(spinner1.getSelectedItem().toString());
                 Country to = mCountryAdapter.GetCountryByCurFull(spinner2.getSelectedItem().toString());
 
@@ -74,11 +83,19 @@ public class Settings extends Fragment {
                 editor.commit();
                 Toast.makeText(context,context.getResources().getString(R.string.SaveMsg),Toast.LENGTH_SHORT).show();
 
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, MainActivity.HomeFragment.newInstance(0))
-                        .commit();
+                if(Type==-1)
+                {
+                    Intent intent = new Intent(context, MainActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
 
+
+                }else {
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, MainActivity.HomeFragment.newInstance(0))
+                            .commit();
+                }
 
             }
         });
@@ -89,7 +106,7 @@ public class Settings extends Fragment {
 
     public void setSpinner(Spinner spinner,Country Except)
     {
-        ArrayList<String> arrayList=mCountryAdapter.GetList(Except);
+        ArrayList<String> arrayList=mCountryAdapter.GetList(Except,"CurFull");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
@@ -98,12 +115,6 @@ public class Settings extends Fragment {
         spinner.setAdapter(adapter);
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
-    }
 
 
 }
