@@ -58,9 +58,10 @@ public class CountryAdapter {
       }
         else {
 
-          SyncValues();
-          Log.e("found","not found");
 
+              SyncValues();
+              Log.e("found", "not found");
+       
       }
     }
 
