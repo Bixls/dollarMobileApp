@@ -36,6 +36,21 @@
         اهلا بك
     </string>
 
+
+    <string name="DollarPricesIn">
+اسعار العملات في
+    </string>
+
+    <string name="currency">
+       العملة
+    </string>
+
+        <string name="currencywith">
+ألسعر الحالي ب
+    </string>
+
+
+
     <string name="Save">حفظ</string>
     <string name="SaveMsg">تم الحفظ بنجاح</string>
     <string name="USD">الولايات المتحده الامريكية</string>
