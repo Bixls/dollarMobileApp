@@ -202,9 +202,14 @@ public class CountryAdapter {
 
         @Override
         protected void onPostExecute(JSONObject result) {
-
             handleResponse(result);
-            progDailog.cancel();
+            try {
+                //TODO Check this error for first time opening
+                progDailog.cancel();
+            }catch (Exception e)
+            {
+                Log.e("Exception in",e.toString());
+            }
         }
 
     }
@@ -266,9 +271,6 @@ public class CountryAdapter {
 
                 for (int i = 0; i < CountriesArray.length(); i++) {
                     JSONObject post = CountriesArray.getJSONObject(i);
-
-
-
                     Values.put(post.getString("title"),post.getString("value"));
                 }
 

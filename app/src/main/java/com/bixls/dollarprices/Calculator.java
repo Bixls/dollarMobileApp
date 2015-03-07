@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -97,10 +98,11 @@ public class Calculator extends Fragment {
         setSpinner(B,except);
 
     }
-    public double Calculate(double amount,Country From,Country to){
+    public String Calculate(double amount,Country From,Country to){
 
         double ratio=to.Value/From.Value;
-        return amount*ratio;
+        DecimalFormat df = new DecimalFormat("#0.0000");
+        return  df.format(amount*ratio);
     }
     public void setSpinner(Spinner spinner,Country Except)
     {
