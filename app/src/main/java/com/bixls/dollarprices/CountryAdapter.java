@@ -46,22 +46,17 @@ public class CountryAdapter {
         Countries=countries;
       if(mPreferences.contains("valid"))
       {
-
           for(int i=0;i<Countries.size();i++){
               if(mPreferences.contains(Countries.get(i).Code)){
             Countries.get(i).SetCurrency(mPreferences.getString(Countries.get(i).Code,""));
               Log.e("found",""+mPreferences.getString(Countries.get(i).Code,""));
           }
           }
-
-
       }
         else {
-
-
               SyncValues();
               Log.e("found", "not found");
-       
+
       }
     }
 
