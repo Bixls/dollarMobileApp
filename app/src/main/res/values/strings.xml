@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">
-        اسعار الدولار
-    </string>
+    <string name="app_name">        اسعار الدولار</string>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
@@ -30,27 +28,10 @@
     <string name="to">        إالى</string>
     <string name="calculate">حساب</string>
     <string name="HomeSettings">اعدادات الرئيسية</string>
-
-
-    <string name="FirstTime">
-        اهلا بك
-    </string>
-
-
-    <string name="DollarPricesIn">
-اسعار العملات في
-    </string>
-
-    <string name="currency">
-       العملة
-    </string>
-
-        <string name="currencywith">
-ألسعر الحالي ب
-    </string>
-
-
-
+    <string name="FirstTime">        اهلا بك</string>
+    <string name="DollarPricesIn">اسعار العملات في</string>
+    <string name="currency">       العملة</string>
+    <string name="currencywith">ألسعر الحالي ب</string>
     <string name="Save">حفظ</string>
     <string name="SaveMsg">تم الحفظ بنجاح</string>
     <string name="USD">الولايات المتحده الامريكية</string>
@@ -96,5 +77,7 @@
     <string name="DZD_short">دينار</string>
     <string name="DZD_Full">االدينار الجزائري</string>
     <string name="title_activity_setting_first_time">SettingFirstTime</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>

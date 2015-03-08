@@ -70,6 +70,21 @@ public class MainActivity extends ActionBarActivity
 
 
 
+        SharedPreferences prefs = getSharedPreferences("WidgetPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+
+        Country countryFrom = mCountryAdapter.GetCountryByCode(mPreferences.getString("CFrom", ""));
+        Country countryTo = mCountryAdapter.GetCountryByCode(mPreferences.getString("CTo", ""));
+
+        if (countryFrom != null && countryTo != null) {
+            double ratio = countryTo.Value / countryFrom.Value;
+            editor.putString("ToValue", ratio+"");
+            editor.putString("To",countryTo.CurFull);
+            editor.putString("From",countryFrom.CurFull);
+            editor.commit();
+        }
+
     }
 
 
