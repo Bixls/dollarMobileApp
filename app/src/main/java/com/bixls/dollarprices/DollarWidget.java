@@ -1,7 +1,9 @@
 package com.bixls.dollarprices;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,16 +23,36 @@ public class DollarWidget extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
 
+
+
         final int N = appWidgetIds.length;
         for (int i = 0; i < N; i++) {
+            int appWidgetId = appWidgetIds[i];
             updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
+
+            // Create an Intent to launch ExampleActivity
+            Intent intent = new Intent(context, MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+
+            // Get the layout for the App Widget and attach an on-click listener
+            // to the button
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.dollar_widget);
+            views.setOnClickPendingIntent(R.id.dollarWidget, pendingIntent);
+
+            // Tell the AppWidgetManager to perform an update on the current app widget
+            appWidgetManager.updateAppWidget(appWidgetId, views);
+
+
         }
+
+
+
     }
 
 
     @Override
     public void onEnabled(Context context) {
-        // Enter relevant functionality for when the first widget is created
+
     }
 
     @Override
@@ -48,9 +70,14 @@ public class DollarWidget extends AppWidgetProvider {
 
 
         CharSequence widgetText =  mPreferences.getString("ToValue", "");
+
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.dollar_widget);
+
         views.setTextViewText(R.id.appwidget_text, widgetText);
+
+        views.setTextViewText(R.id.Wto, mPreferences.getString("To", ""));
+        views.setTextViewText(R.id.Wfrom, mPreferences.getString("From", ""));
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

@@ -80,6 +80,8 @@ public class MainActivity extends ActionBarActivity
         if (countryFrom != null && countryTo != null) {
             double ratio = countryTo.Value / countryFrom.Value;
             editor.putString("ToValue", ratio+"");
+            editor.putString("To",countryTo.CurFull);
+            editor.putString("From",countryFrom.CurFull);
             editor.commit();
         }
 
