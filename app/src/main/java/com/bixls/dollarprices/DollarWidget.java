@@ -65,7 +65,7 @@ public class DollarWidget extends AppWidgetProvider {
 
 
 
-         mPreferences = context.getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
+         mPreferences = context.getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
 
 
 
