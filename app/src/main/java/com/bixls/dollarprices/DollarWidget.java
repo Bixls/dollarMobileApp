@@ -18,6 +18,7 @@ public class DollarWidget extends AppWidgetProvider {
 
     static   private SharedPreferences mPreferences;
     static   private CountryAdapter mCountryAdapter;
+    public  static String UPDATE_ACTION="UPDATEME";
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -41,7 +42,26 @@ public class DollarWidget extends AppWidgetProvider {
 
 
     }
+    @Override
+    public void onReceive(Context context, Intent intent) {
 
+        String action = intent.getAction();
+
+        if (action != null && action.equals(UPDATE_ACTION)) {
+            final AppWidgetManager manager = AppWidgetManager.getInstance
+                    (context);
+
+            onUpdate(context, manager,
+                    manager.getAppWidgetIds(new ComponentName(
+                                    context, DollarWidget.class)
+                    )
+            );
+        }
+
+        else {
+            super.onReceive(context, intent);
+        }
+    }
 
     @Override
     public void onEnabled(Context context) {

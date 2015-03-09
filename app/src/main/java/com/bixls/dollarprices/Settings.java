@@ -89,7 +89,11 @@ public class Settings extends Fragment {
                     editor.putString("From",from.CurFull);
                     editor.commit();
 
-                    DollarWidget.updateAppWidget();
+                Intent i = new Intent(context, DollarWidget.class);
+                i.setAction(DollarWidget.UPDATE_ACTION);
+                context.sendBroadcast(i);
+
+
 
 
 
