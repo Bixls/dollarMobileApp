@@ -10,8 +10,6 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -23,11 +21,7 @@
         </activity>
         <activity
             android:name=".ViewCountry"
-            android:label="@string/title_activity_view_country"
-            android:parentActivityName=".MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bixls.dollarprices.MainActivity" />
+            android:label="@string/title_activity_view_country">
         </activity>
         <activity
             android:name=".SettingFirstTime"
@@ -47,6 +41,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/dollar_widget_info" />
         </receiver>
+
     </application>
 
 </manifest>

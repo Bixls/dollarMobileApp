@@ -17,7 +17,7 @@ public class CountryList {
                 res.getString(R.string.USD),
                 res.getString(R.string.USD_Full),
                 res.getString(R.string.USD_short),
-                res.getDrawable(R.drawable.egp)
+                res.getDrawable(R.drawable.usd)
         ));
     countries.add(new Country(
             "EGP",
