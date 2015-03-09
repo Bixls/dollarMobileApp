@@ -86,6 +86,13 @@ public class CountryAdapter {
                     }
                 }
                 return CodeList;
+            case "Flag":
+                for (int i = 0; i < Countries.size(); i++) {
+                    if (Countries.get(i) != Except) {
+                        CodeList.add(Countries.get(i).Flag.toString());
+                    }
+                }
+                return CodeList;
             default:
                 for (int i = 0; i < Countries.size(); i++) {
                     if (Countries.get(i) != Except) {

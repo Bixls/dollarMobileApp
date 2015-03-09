@@ -33,6 +33,8 @@ public class Calculator extends Fragment {
     static   private Context context;
 
 
+
+
     private static final String ARG_SECTION_NUMBER = "section_number";
     public static Calculator newInstance(int sectionNumber,SharedPreferences preferences,Context mcontext) {
         mPreferences=preferences;

@@ -31,6 +31,7 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
+
 public class Settings extends Fragment {
 
     static   private CountryAdapter mCountryAdapter;
@@ -72,6 +73,7 @@ public class Settings extends Fragment {
 
         setSpinner(spinner1,null);
         setSpinner(spinner2,mCountryAdapter.GetCountryByCode("USD"));
+
 
         ((Button) rootView.findViewById(R.id.Save)).setOnClickListener(new View.OnClickListener() {
             @Override
