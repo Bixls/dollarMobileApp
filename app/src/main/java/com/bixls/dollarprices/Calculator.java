@@ -61,6 +61,7 @@ public class Calculator extends Fragment {
         final Spinner spinner1 = (Spinner)     rootView.findViewById(R.id.spinner);
         final Spinner spinner2 = (Spinner)     rootView.findViewById(R.id.spinner2);
 
+
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

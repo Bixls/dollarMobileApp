@@ -53,13 +53,26 @@ public class allCont extends Fragment {
         final  View rootView = inflater.inflate(R.layout.fragment_all_cont, container, false);
         // Inflate the layout for this fragment
 
+
+
+
+
+
+
         final   ListView listView=(ListView)rootView.findViewById(R.id.listView);
-        ArrayList<String> arrayList=mCountryAdapter.GetList(mCountryAdapter.GetCountryByCode("USD"), "Name");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                arrayList );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+
+        ArrayList<SpinnerItem> spinnerItems = new ArrayList<SpinnerItem>();
+
+        for(int i=0;i<mCountryAdapter.Countries.size();i++) {
+            if (!(mCountryAdapter.Countries.get(i).Code == "USD")) {
+                spinnerItems.add(new SpinnerItem(mCountryAdapter.Countries.get(i).Name, mCountryAdapter.Countries.get(i).Flag));
+
+            }
+        }
+        SpinnerCustomAdapter adapter = new SpinnerCustomAdapter(context, R.layout.spiner_item, spinnerItems);
+
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
