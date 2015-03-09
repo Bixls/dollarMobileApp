@@ -2,6 +2,8 @@ package com.bixls.dollarprices;
 
 
 import android.app.Activity;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RemoteViews;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,14 +80,17 @@ public class Settings extends Fragment {
                 Country from = mCountryAdapter.GetCountryByCurFull(spinner1.getSelectedItem().toString());
                 Country to = mCountryAdapter.GetCountryByCurFull(spinner2.getSelectedItem().toString());
 
-                SharedPreferences.Editor editor = mPreferences.edit();
-                editor.putString("CFrom",from.Code);
-                editor.putString("CTo",to.Code);
+                    SharedPreferences.Editor editor = mPreferences.edit();
+                    editor.putString("CFrom",from.Code);
+                    editor.putString("CTo",to.Code);
                     double ratio = to.Value / from.Value;
                     editor.putString("ToValue", ratio+"");
                     editor.putString("To",to.CurFull);
                     editor.putString("From",from.CurFull);
                     editor.commit();
+
+                    DollarWidget.updateAppWidget();
+
 
 
 
