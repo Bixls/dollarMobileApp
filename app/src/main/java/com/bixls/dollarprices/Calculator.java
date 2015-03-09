@@ -75,16 +75,16 @@ public class Calculator extends Fragment {
             }
         });
 
-        setSpinner(spinner1,null);
-        setSpinner(spinner2,mCountryAdapter.GetCountryByCode("USD"));
+        setSpinner(spinner1,-1);
+        setSpinner(spinner2,0);
 
         ((Button) rootView.findViewById(R.id.Calc)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                    Country from = mCountryAdapter.GetCountryByCurFull(spinner1.getSelectedItem().toString());
-                    Country to = mCountryAdapter.GetCountryByCurFull(spinner2.getSelectedItem().toString());
+                    Country from = mCountryAdapter.Countries.get(spinner1.getSelectedItemPosition());
+                    Country to =    mCountryAdapter.GetCountryByCode(mCountryAdapter.GetList(mCountryAdapter.Countries.get(spinner1.getSelectedItemPosition()),"Code").get(spinner2.getSelectedItemPosition()));
                     double CalcAmount = Double.parseDouble(((EditText) rootView.findViewById(R.id.CalcAmount)).getText().toString());
                     ((TextView) rootView.findViewById(R.id.Calc_Value)).setText(Calculate(CalcAmount, from, to) + "");
 
@@ -97,9 +97,8 @@ public class Calculator extends Fragment {
     }
     void updateView(Spinner A,Spinner B)
     {
-        Country except=mCountryAdapter.GetCountryByCurFull(A.getSelectedItem().toString());
+        int except=A.getSelectedItemPosition();
         setSpinner(B,except);
-
     }
     public String Calculate(double amount,Country From,Country to){
 
@@ -107,14 +106,17 @@ public class Calculator extends Fragment {
         DecimalFormat df = new DecimalFormat("#0.0000");
         return  df.format(amount*ratio);
     }
-    public void setSpinner(Spinner spinner,Country Except)
+    public void setSpinner(Spinner spinner,int Except)
     {
-        ArrayList<String> arrayList=mCountryAdapter.GetList(Except,"CurFull");
-        ArrayAdapter<String>  adapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                arrayList );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayList<SpinnerItem> spinnerItems = new ArrayList<SpinnerItem>();
+
+        for(int i=0;i<mCountryAdapter.Countries.size();i++) {
+            if (i!=Except) {
+                spinnerItems.add(new SpinnerItem(mCountryAdapter.Countries.get(i).CurFull, mCountryAdapter.Countries.get(i).Flag));
+
+            }
+        }
+        SpinnerCustomAdapter adapter = new SpinnerCustomAdapter(context, R.layout.spiner_item, spinnerItems);
         spinner.setAdapter(adapter);
     }
 

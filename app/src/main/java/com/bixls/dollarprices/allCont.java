@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -54,14 +53,7 @@ public class allCont extends Fragment {
         // Inflate the layout for this fragment
 
 
-
-
-
-
-
         final   ListView listView=(ListView)rootView.findViewById(R.id.listView);
-
-
 
         ArrayList<SpinnerItem> spinnerItems = new ArrayList<SpinnerItem>();
 
@@ -71,7 +63,7 @@ public class allCont extends Fragment {
 
             }
         }
-        SpinnerCustomAdapter adapter = new SpinnerCustomAdapter(context, R.layout.spiner_item, spinnerItems);
+        ListCustomAdapter adapter = new ListCustomAdapter(context, R.layout.list_item, spinnerItems);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

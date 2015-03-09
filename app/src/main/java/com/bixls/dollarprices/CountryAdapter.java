@@ -72,6 +72,13 @@ public class CountryAdapter {
             }
         }
         return CodeList;
+            case "Code":
+                for (int i = 0; i < Countries.size(); i++) {
+                    if (Countries.get(i) != Except) {
+                        CodeList.add(Countries.get(i).Code);
+                    }
+                }
+                return CodeList;
             case "Value":
                 for (int i = 0; i < Countries.size(); i++) {
                     if (Countries.get(i) != Except) {
