@@ -9,12 +9,13 @@
 
     <style name="CountryMain" parent="@android:style/TextAppearance">
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">27sp</item>
         <item name="android:textStyle">bold</item>
+
     </style>
     <style name="CountryMainCurr" parent="@android:style/TextAppearance">
         <item name="android:textColor">#F0F0F0</item>
-        <item name="android:textSize">23sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
     <style name="Equal" parent="@android:style/TextAppearance">
         <item name="android:textColor">#FFFFFF</item>

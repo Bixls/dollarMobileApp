@@ -3,6 +3,7 @@ package com.bixls.dollarprices;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -173,6 +174,7 @@ public class MainActivity extends ActionBarActivity
     }
     public static void Reverse(View rootView)
     {
+        animateCrystalBall(rootView);
         String oldFrom=mPreferences.getString("CFrom", "");
         String oldTo=mPreferences.getString("CTo", "");
         SharedPreferences.Editor editor = mPreferences.edit();
@@ -180,6 +182,14 @@ public class MainActivity extends ActionBarActivity
         editor.putString("CTo", oldFrom);
         editor.commit();
         UpdateView(rootView);
+    }
+    private static void animateCrystalBall(View rootView) {
+
+        AnimationDrawable ballAnimation = (AnimationDrawable)  ((ImageButton)(rootView.findViewById(R.id.equaltextview))).getBackground();
+        if (ballAnimation.isRunning()) {
+            ballAnimation.stop();
+        }
+        ballAnimation.start();
     }
 
     /**
@@ -206,6 +216,7 @@ public class MainActivity extends ActionBarActivity
             final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
             UpdateView(rootView);
+            animateCrystalBall(rootView);
 
             ((Button)(rootView.findViewById(R.id.SyncButtom))).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -216,6 +227,7 @@ public class MainActivity extends ActionBarActivity
             ((ImageButton)(rootView.findViewById(R.id.equaltextview))).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     Reverse(rootView);
                 }
             });
