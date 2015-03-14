@@ -6,7 +6,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +54,7 @@ public class Calculator extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         CountryList countryList=new CountryList();
         mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,context);
@@ -60,6 +63,10 @@ public class Calculator extends Fragment {
 
         final Spinner spinner1 = (Spinner)     rootView.findViewById(R.id.spinner);
         final Spinner spinner2 = (Spinner)     rootView.findViewById(R.id.spinner2);
+
+        final EditText input = (EditText)     rootView.findViewById(R.id.CalcAmount);
+
+        final EditText output = (EditText)     rootView.findViewById(R.id.Calc_Value);
 
 
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -82,11 +89,44 @@ public class Calculator extends Fragment {
             @Override
             public void onClick(View v) {
 
+            calculate(spinner1,spinner2,input,output,false);
 
-                    Country from = mCountryAdapter.Countries.get(spinner1.getSelectedItemPosition());
-                    Country to =    mCountryAdapter.GetCountryByCode(mCountryAdapter.GetList(mCountryAdapter.Countries.get(spinner1.getSelectedItemPosition()),"Code").get(spinner2.getSelectedItemPosition()));
-                    double CalcAmount = Double.parseDouble(((EditText) rootView.findViewById(R.id.CalcAmount)).getText().toString());
-                    ((TextView) rootView.findViewById(R.id.Calc_Value)).setText(Calculate(CalcAmount, from, to) + "");
+            }
+        });
+        input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(input.isFocused())
+                {
+                calculate(spinner1,spinner2,input,output,false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        output.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(output.isFocused()) {
+                    calculate(spinner1, spinner2, output, input,true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
@@ -94,6 +134,24 @@ public class Calculator extends Fragment {
 
         return rootView;
 
+    }
+    void calculate(Spinner spinner1,Spinner spinner2 ,EditText input,EditText output,boolean Rev)
+    {
+        try {
+            Country from = mCountryAdapter.Countries.get(spinner1.getSelectedItemPosition());
+            Country to = mCountryAdapter.GetCountryByCode(mCountryAdapter.GetList(mCountryAdapter.Countries.get(spinner1.getSelectedItemPosition()), "Code").get(spinner2.getSelectedItemPosition()));
+            double CalcAmount = Double.parseDouble(input.getText().toString());
+          if(!Rev)
+          {
+              output.setText(Calculate(CalcAmount, from, to) + "");
+          }
+            else{
+              output.setText(Calculate(CalcAmount, to, from) + "");
+          }
+        }catch (Exception E)
+        {
+            Log.e("Error in",E.toString());
+        }
     }
     void updateView(Spinner A,Spinner B)
     {
