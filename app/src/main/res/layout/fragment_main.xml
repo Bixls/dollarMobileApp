@@ -1,87 +1,135 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity$PlaceholderFragment">
+    tools:context=".MainActivity$PlaceholderFragment"
+    android:background="@drawable/back">
 
-    <TextView android:id="@+id/section_label" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/fromAmount"
-        android:layout_above="@+id/FromTextType"
-        android:layout_centerHorizontal="true"
-       />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="-"
-        android:id="@+id/FromTextType"
-        android:layout_above="@+id/equaltextview"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/equal"
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="33dp"
         android:id="@+id/equaltextview"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:background="@drawable/equal" />
 
-    <TextView
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/toAmount"
-        android:layout_below="@+id/equaltextview"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignEnd="@id/equaltextview"
+        android:layout_alignRight="@id/equaltextview"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/SyncText"
+        android:id="@+id/linearLayout">
 
-    <TextView
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/FlagTo"
+            android:src="@drawable/egp"
+            android:layout_marginBottom="7dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/CountryMainCurr"
+            android:text="Nto"
+            android:id="@+id/toAmount"
+            />
+
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="-"
+        android:textAppearance="@style/CountryMain"
+        android:text="toCountry"
         android:id="@+id/ToTextType"
-        android:layout_below="@+id/toAmount"
-        android:layout_centerHorizontal="true" />
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@id/equaltextview"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignStart="@id/equaltextview"
+        android:layout_above="@+id/SyncText">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/FlagFrom"
+            android:src="@drawable/kwd"
+            android:layout_marginBottom="7dp" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/CountryMainCurr"
+        android:text="Nfrin"
+        android:id="@+id/fromAmount" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/CountryMain"
+        android:text="fromCounty"
+        android:id="@+id/FromTextType"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp" />
+    </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/LastSync"
         android:text="@string/lastSync"
         android:id="@+id/lastSync"
-
-        android:layout_below="@+id/ToTextType"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/equaltextview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="@style/LastSync"
         android:id="@+id/SyncText"
+        android:text="datee time"
         android:layout_below="@+id/lastSync"
-        android:layout_centerHorizontal="true"
-
-        android:text="-" />
-
-
-
+        android:layout_centerHorizontal="true" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Sync"
         android:id="@+id/SyncButtom"
+        android:layout_below="@+id/SyncText"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/SyncText" />
+        android:layout_marginTop="24dp"
+        android:drawableLeft="@drawable/sync"
+        android:background="@drawable/buttonshape" />
+
+
 
 </RelativeLayout>
+

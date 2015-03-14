@@ -16,7 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.DecimalFormat;
 
 
 public class MainActivity extends ActionBarActivity
@@ -155,13 +159,27 @@ public class MainActivity extends ActionBarActivity
 
             if (countryFrom != null && countryTo != null) {
                 double ratio = countryTo.Value / countryFrom.Value;
+                DecimalFormat df = new DecimalFormat("#0.0000");
+
                 ((TextView) (rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
                 ((TextView) (rootView.findViewById(R.id.fromAmount))).setText("1");
+                ((ImageView)(rootView.findViewById(R.id.FlagFrom))).setImageDrawable(countryFrom.Flag);
                 ((TextView) (rootView.findViewById(R.id.ToTextType))).setText(countryTo.CurShort);
-                ((TextView) (rootView.findViewById(R.id.toAmount))).setText("" + ratio);
+                ((TextView) (rootView.findViewById(R.id.toAmount))).setText("" + df.format(ratio));
+                ((ImageView)(rootView.findViewById(R.id.FlagTo))).setImageDrawable(countryTo.Flag);
             }
         }
 
+    }
+    public static void Reverse(View rootView)
+    {
+        String oldFrom=mPreferences.getString("CFrom", "");
+        String oldTo=mPreferences.getString("CTo", "");
+        SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString("CFrom", oldTo);
+        editor.putString("CTo", oldFrom);
+        editor.commit();
+        UpdateView(rootView);
     }
 
     /**
@@ -193,6 +211,12 @@ public class MainActivity extends ActionBarActivity
                 @Override
                 public void onClick(View v) {
                     mCountryAdapter.SyncValuesWithInterface(rootView);
+                }
+            });
+            ((ImageButton)(rootView.findViewById(R.id.equaltextview))).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Reverse(rootView);
                 }
             });
 
