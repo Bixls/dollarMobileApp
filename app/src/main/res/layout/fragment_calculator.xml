@@ -19,7 +19,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/Rev"
         android:gravity="center"
@@ -39,7 +39,7 @@
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout2"
         android:layout_below="@+id/Rev"
@@ -58,13 +58,7 @@
         android:inputType="numberDecimal"
         android:background="@drawable/calcvalueback" />
 </LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/calculate"
-        android:id="@+id/Calc"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
+
 
 
 

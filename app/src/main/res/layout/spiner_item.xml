@@ -6,8 +6,8 @@
 
 
     <LinearLayout
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:weightSum="1"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -21,14 +21,14 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:text="Test"
-        android:textAppearance="@style/calcItem" />
+        android:textAppearance="@style/calcItem"
+        android:layout_marginRight="8sp" />
 
     <ImageView
-        android:layout_width="30sp"
+        android:layout_width="38sp"
         android:layout_height="wrap_content"
         android:id="@+id/Flag"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="12sp"
         android:layout_weight="1"
         android:src="@drawable/usd"
         android:maxWidth="12sp" />

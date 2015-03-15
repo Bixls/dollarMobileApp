@@ -107,8 +107,8 @@ public class Calculator extends Fragment {
         ((ImageButton) rootView.findViewById(R.id.Rev)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           animateCrystalBall(rootView);
-           Rev(spinner1,spinner2);
+                animateCrystalBall(rootView);
+                Rev(spinner1, spinner2);
 
             }
         });
@@ -176,17 +176,17 @@ public class Calculator extends Fragment {
     void calculate(Spinner spinner1,Spinner spinner2 ,EditText input,EditText output,boolean Rev)
     {
         try {
-            Country from = mCountryAdapter.Countries.get(spinner1.getSelectedItemPosition());
-            //Country to = mCountryAdapter.GetCountryByCode(mCountryAdapter.GetList(mCountryAdapter.Countries.get(spinner1.getSelectedItemPosition()), "Code").get(spinner2.getSelectedItemPosition()));
-            Country to = mCountryAdapter.Countries.get(spinner2.getSelectedItemPosition());
-            double CalcAmount = Double.parseDouble(input.getText().toString());
-          if(!Rev)
-          {
-              output.setText(Calculate(CalcAmount, from, to) + "");
-          }
-            else{
-              output.setText(Calculate(CalcAmount, to, from) + "");
-          }
+            if(!input.getText().equals("")) {
+                Country from = mCountryAdapter.Countries.get(spinner1.getSelectedItemPosition());
+                //Country to = mCountryAdapter.GetCountryByCode(mCountryAdapter.GetList(mCountryAdapter.Countries.get(spinner1.getSelectedItemPosition()), "Code").get(spinner2.getSelectedItemPosition()));
+                Country to = mCountryAdapter.Countries.get(spinner2.getSelectedItemPosition());
+                double CalcAmount = Double.parseDouble(input.getText().toString());
+                if (!Rev) {
+                    output.setText(Calculate(CalcAmount, from, to) + "");
+                } else {
+                    output.setText(Calculate(CalcAmount, to, from) + "");
+                }
+            }
         }catch (Exception E)
         {
             Log.e("Error in",E.toString());
