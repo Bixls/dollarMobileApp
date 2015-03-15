@@ -6,64 +6,60 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/back"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/to"
-        android:id="@+id/toView"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/Rev"
+        android:background="@drawable/equalhorizontal"
+        android:layout_centerInParent="true" />
 
-    <Spinner
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Rev"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/calcitemshape">
+    <Spinner
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
-        android:layout_above="@+id/toView"
-        android:layout_centerHorizontal="true" />
-
+        />
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:ems="10"
         android:id="@+id/CalcAmount"
-        android:layout_above="@+id/textView3"
-        android:layout_centerHorizontal="true" />
-
+        android:background="@drawable/calcvalueback" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2"
+        android:layout_below="@+id/Rev"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/calcitemshape">
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner2"
-        android:layout_below="@+id/toView"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/spinner2" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="@string/calculate"
-        android:id="@+id/Calc"
-        android:layout_below="@+id/spinner2"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/Calc_Value"
-        android:layout_below="@+id/Calc"
-        android:layout_centerHorizontal="true" />
+        android:inputType="numberDecimal"
+        android:background="@drawable/calcvalueback" />
+</LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/from"
-        android:id="@+id/textView3"
-        android:layout_above="@+id/spinner"
-        android:layout_centerHorizontal="true" />
+
+
+
 </RelativeLayout>

@@ -7,7 +7,12 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.widget.RemoteViews;
+
+import java.text.DecimalFormat;
 
 
 /**
@@ -80,17 +85,27 @@ public class DollarWidget extends AppWidgetProvider {
 
          mPreferences = context.getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
 
+        CountryList countryList=new CountryList();
+        mCountryAdapter = new CountryAdapter(countryList.init(context.getResources()),mPreferences,context);
 
 
-        CharSequence widgetText =  mPreferences.getString("ToValue", "");
+        Country from= mCountryAdapter.GetCountryByCode(mPreferences.getString("CFrom", ""));
+        Country to= mCountryAdapter.GetCountryByCode(mPreferences.getString("CTo", ""));
+
+
+        double ratio=to.Value/from.Value;
+
+        DecimalFormat df = new DecimalFormat("#0.0000");
+
+
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.dollar_widget);
 
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+        views.setTextViewText(R.id.appwidget_text,df.format(ratio));
 
-        views.setTextViewText(R.id.Wto, mPreferences.getString("To", ""));
-        views.setTextViewText(R.id.Wfrom, mPreferences.getString("From", ""));
+        views.setImageViewBitmap(R.id.FTo,((BitmapDrawable)to.Flag).getBitmap());
+        views.setImageViewBitmap(R.id.FFrom,((BitmapDrawable)from.Flag).getBitmap());
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

@@ -1,31 +1,45 @@
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:showDividers="middle"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:weightSum="1"
-    android:transitionGroup="false">
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="1"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
 
     <TextView
         android:id="@+id/Name"
         android:layout_width="136dp"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:text="Test" />
+        android:text="Test"
+        android:textAppearance="@style/calcItem"
+        android:layout_marginRight="8sp" />
 
     <ImageView
-        android:layout_width="30sp"
+        android:layout_width="38sp"
         android:layout_height="wrap_content"
         android:id="@+id/Flag"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="12sp"
         android:layout_weight="1"
         android:src="@drawable/usd"
         android:maxWidth="12sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/imageView2"
+        android:background="@drawable/spiitem" />
 
 
 </LinearLayout>

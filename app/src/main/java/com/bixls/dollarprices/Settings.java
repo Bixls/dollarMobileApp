@@ -87,10 +87,6 @@ public class Settings extends Fragment {
                 SharedPreferences.Editor editor = mPreferences.edit();
                 editor.putString("CFrom", from.Code);
                 editor.putString("CTo", to.Code);
-                double ratio = to.Value / from.Value;
-                editor.putString("ToValue", ratio + "");
-                editor.putString("To", to.CurFull);
-                editor.putString("From", from.CurFull);
                 editor.commit();
 
                 Intent i = new Intent(context, DollarWidget.class);
