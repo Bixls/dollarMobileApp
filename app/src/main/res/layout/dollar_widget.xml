@@ -1,35 +1,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:padding="@dimen/widget_margin" android:background="#4c000000"
+    android:padding="@dimen/widget_margin" android:background="@drawable/widgetback"
     android:id="@+id/dollarWidget">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/flagCont"
+        android:gravity="center">
 
-    <TextView android:id="@+id/appwidget_text" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" android:text="@string/appwidget_text"
+    <RelativeLayout
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/widgetflagback"
+       >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            >
+
+        <ImageView
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:id="@+id/FFrom"
+
+            android:src="@drawable/egp" />
+
+        <ImageView
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+
+            android:id="@+id/FTo"
+            android:src="@drawable/usd"
+
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="16dp" />
+
+
+    </RelativeLayout>
+</RelativeLayout>
+    <TextView android:id="@+id/appwidget_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/appwidget_text"
         android:textColor="#ffffff" android:textSize="12sp" android:textStyle="bold"
-        android:contentDescription="@string/appwidget_text" />
+       />
 
-    <TextView
-        android:id="@+id/Wfrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/appwidget_text"
-        android:textColor="#ffffff"
-        android:textSize="9sp"
-        android:contentDescription="@string/appwidget_text"
-        android:layout_above="@+id/appwidget_text"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/Wto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/appwidget_text"
-        android:textColor="#ffffff"
-        android:textSize="9sp"
-
-        android:contentDescription="@string/appwidget_text"
-        android:layout_below="@+id/appwidget_text"
-        android:layout_centerHorizontal="true" />
-
+</LinearLayout>
 </RelativeLayout>
