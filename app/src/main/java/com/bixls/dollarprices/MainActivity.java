@@ -157,27 +157,7 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public static void UpdateView(View rootView){
 
-        if((mPreferences.contains("CFrom")&&mPreferences.contains("CTo"))) {
-            ((TextView) (rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time", ""));
-            Country countryFrom = mCountryAdapter.GetCountryByCode(mPreferences.getString("CFrom", ""));
-            Country countryTo = mCountryAdapter.GetCountryByCode(mPreferences.getString("CTo", ""));
-
-            if (countryFrom != null && countryTo != null) {
-                double ratio = countryTo.Value / countryFrom.Value;
-                DecimalFormat df = new DecimalFormat("#0.0000");
-
-              //  ((TextView) (rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
-              //  ((TextView) (rootView.findViewById(R.id.fromAmount))).setText("1");
-              //  ((ImageView)(rootView.findViewById(R.id.FlagFrom))).setImageDrawable(countryFrom.Flag);
-               // ((TextView) (rootView.findViewById(R.id.ToTextType))).setText(countryTo.CurShort);
-               // ((TextView) (rootView.findViewById(R.id.toAmount))).setText("" + df.format(ratio));
-               // ((ImageView)(rootView.findViewById(R.id.FlagTo))).setImageDrawable(countryTo.Flag);
-            }
-        }
-
-    }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -185,6 +165,27 @@ public class MainActivity extends ActionBarActivity
     public static class HomeFragment extends Fragment {
 
 
+        public static void UpdateView(View rootView){
+
+            if((mPreferences.contains("CFrom")&&mPreferences.contains("CTo"))) {
+                ((TextView) (rootView.findViewById(R.id.SyncText))).setText(mPreferences.getString("time", ""));
+                int countryFrom = mCountryAdapter.GetCountryIDByCode(mPreferences.getString("CFrom", ""));
+                int countryTo = mCountryAdapter.GetCountryIDByCode(mPreferences.getString("CTo", ""));
+
+
+
+
+                if (countryFrom != 0 && countryTo != 0) {
+
+
+                    setSpinner(((Spinner)rootView.findViewById(R.id.spinner1)),true,null);
+                    ((Spinner)rootView.findViewById(R.id.spinner1)).setSelection(countryFrom);
+                    defPos=countryTo;
+
+                }
+            }
+
+        }
 
         private static void animateCrystalBall(View rootView) {
 
@@ -194,6 +195,7 @@ public class MainActivity extends ActionBarActivity
             }
             ballAnimation.start();
         }
+
 
 
          public static   int defPos=0;
@@ -218,7 +220,7 @@ public class MainActivity extends ActionBarActivity
             return fragment;
         }
 
-        public void setSpinner(Spinner spinner,Boolean Type,Country From)
+        public static void setSpinner(Spinner spinner,Boolean Type,Country From)
         {
             ArrayList<SpinnerItemHome> spinnerItems = new ArrayList<SpinnerItemHome>();
 
@@ -253,7 +255,7 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-            UpdateView(rootView);
+
             animateCrystalBall(rootView);
 
             final Spinner spinner1 = (Spinner)     rootView.findViewById(R.id.spinner1);
@@ -280,12 +282,20 @@ public class MainActivity extends ActionBarActivity
                 }
             });
 
-
+            UpdateView(rootView);
             ((ImageButton)(rootView.findViewById(R.id.equaltextview))).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     Reverse(spinner1,spinner2,rootView);
+                }
+            });
+
+
+            ((Button)(rootView.findViewById(R.id.SyncButtom))).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mCountryAdapter.SyncValuesWithInterface(rootView,false);
                 }
             });
 

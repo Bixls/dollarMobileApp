@@ -15,7 +15,9 @@
         android:id="@+id/textVie4"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40sp"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:textColor="#ffffffff"
+        android:layout_marginBottom="20sp" />
 
     <LinearLayout
         android:orientation="vertical"
