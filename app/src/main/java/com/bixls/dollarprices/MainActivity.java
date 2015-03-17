@@ -19,9 +19,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity
@@ -56,6 +58,7 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
 
 
 
@@ -162,12 +165,12 @@ public class MainActivity extends ActionBarActivity
                 double ratio = countryTo.Value / countryFrom.Value;
                 DecimalFormat df = new DecimalFormat("#0.0000");
 
-                ((TextView) (rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
-                ((TextView) (rootView.findViewById(R.id.fromAmount))).setText("1");
-                ((ImageView)(rootView.findViewById(R.id.FlagFrom))).setImageDrawable(countryFrom.Flag);
-                ((TextView) (rootView.findViewById(R.id.ToTextType))).setText(countryTo.CurShort);
-                ((TextView) (rootView.findViewById(R.id.toAmount))).setText("" + df.format(ratio));
-                ((ImageView)(rootView.findViewById(R.id.FlagTo))).setImageDrawable(countryTo.Flag);
+              //  ((TextView) (rootView.findViewById(R.id.FromTextType))).setText(countryFrom.CurShort);
+              //  ((TextView) (rootView.findViewById(R.id.fromAmount))).setText("1");
+              //  ((ImageView)(rootView.findViewById(R.id.FlagFrom))).setImageDrawable(countryFrom.Flag);
+               // ((TextView) (rootView.findViewById(R.id.ToTextType))).setText(countryTo.CurShort);
+               // ((TextView) (rootView.findViewById(R.id.toAmount))).setText("" + df.format(ratio));
+               // ((ImageView)(rootView.findViewById(R.id.FlagTo))).setImageDrawable(countryTo.Flag);
             }
         }
 
@@ -207,6 +210,20 @@ public class MainActivity extends ActionBarActivity
             return fragment;
         }
 
+        public void setSpinner(Spinner spinner)
+        {
+            ArrayList<SpinnerItemHome> spinnerItems = new ArrayList<SpinnerItemHome>();
+
+            for(int i=0;i<mCountryAdapter.Countries.size();i++) {
+
+                    spinnerItems.add(new SpinnerItemHome(mCountryAdapter.Countries.get(i).CurFull,mCountryAdapter.Countries.get(i).Value,mCountryAdapter.Countries.get(i).CurShort, mCountryAdapter.Countries.get(i).Flag));
+
+            }
+
+            SpinnerHomepageAdapter adapter = new SpinnerHomepageAdapter(spinner.getContext(), R.layout.spiner_item, spinnerItems);
+            spinner.setAdapter(adapter);
+        }
+
         public HomeFragment() {
         }
 
@@ -218,12 +235,12 @@ public class MainActivity extends ActionBarActivity
             UpdateView(rootView);
             animateCrystalBall(rootView);
 
-            ((Button)(rootView.findViewById(R.id.SyncButtom))).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mCountryAdapter.SyncValuesWithInterface(rootView);
-                }
-            });
+            final Spinner spinner1 = (Spinner)     rootView.findViewById(R.id.spinner1);
+            final Spinner spinner2 = (Spinner)     rootView.findViewById(R.id.spinner2);
+            setSpinner(spinner1);
+            setSpinner(spinner2);
+            spinner2.setSelection(1);
+
             ((ImageButton)(rootView.findViewById(R.id.equaltextview))).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
