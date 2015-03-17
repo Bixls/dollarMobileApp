@@ -2,16 +2,22 @@ package com.bixls.dollarprices;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -29,11 +35,15 @@ public class ViewCountry extends ActionBarActivity {
         setContentView(R.layout.activity_view_country);
 
 
-
         Bundle extras = getIntent().getExtras();
         CountryList countryList=new CountryList();
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,ViewCountry.this);
+
+
+
+
+
 
 
         if (extras != null) {
@@ -41,82 +51,57 @@ public class ViewCountry extends ActionBarActivity {
             DefaultCountry    = mCountryAdapter.GetCountryByCode(extras.getString("Country")) ;
 
             init(DefaultCountry);
+
+
+            ((TextView)findViewById(R.id.bigTitle)).setText(getResources().getString(R.string.DollarPricesIn)+" "+DefaultCountry.Name);
+            ((TextView)findViewById(R.id.SmallTitle)).setText(getResources().getString(R.string.DollarPricesInsmall)+" "+DefaultCountry.CurFull);
+
             ActionBar actionBar = getSupportActionBar();
+            actionBar.setIcon(DefaultCountry.Flag);
             actionBar.setTitle(getResources().getString(R.string.DollarPricesIn)+" "+DefaultCountry.Name);
+
         }
     }
-    public String Calculate(String From,String to){
+    public String Calculate(double to,double From){
 
-        Double ratio=Double.parseDouble(to)/Double.parseDouble(From);
+        Double ratio=to/From;
         DecimalFormat df = new DecimalFormat("#0.0000");
         return  df.format(ratio);
     }
 
-    public void init(Country from) {
+    void init(Country defaultCountry)
+    {
+        final ListView listView=(ListView)findViewById(R.id.listView2);
 
-        TableLayout stk = (TableLayout) findViewById(R.id.table_main);
-        TableRow tbrow0 = new TableRow(this);
+        ArrayList<SpinnerItemHome> spinnerItems = new ArrayList<SpinnerItemHome>();
 
+        for(int i=0;i<mCountryAdapter.Countries.size();i++) {
 
+            if (!(mCountryAdapter.Countries.get(i).Code == defaultCountry.Code)) {
 
-        TextView tv0 = new TextView(this);
-        tv0.setText(getResources().getString(R.string.currencywith)+from.CurFull);
-        tv0.setTextColor(Color.BLACK);
+                spinnerItems.add(new SpinnerItemHome(mCountryAdapter.Countries.get(i).CurFull,Calculate(defaultCountry.Value,mCountryAdapter.Countries.get(i).Value),mCountryAdapter.Countries.get(i).CurShort, mCountryAdapter.Countries.get(i).Flag));
 
+            }
 
-        TextView tv1 = new TextView(this);
-        tv1.setText(getResources().getString(R.string.currency));
-        tv1.setTextColor(Color.BLACK);
-
-
-        tbrow0.addView(tv0);
-        tbrow0.addView(tv1);
-
-        stk.addView(tbrow0);
-        ArrayList<String> currencies=mCountryAdapter.GetList(from,"CurrencyFull");
-        ArrayList<String> CValuesToDollar=mCountryAdapter.GetList(from,"Value");
-
-        for (int i = 0; i < currencies.size(); i++) {
-
-            TableRow tbrow = new TableRow(this);
-            //init
-            TextView t1v = new TextView(this);
-            TextView t2v = new TextView(this);
-
-            //setting values
-            t1v.setText(currencies.get(i));
-            t2v.setText(Calculate(CValuesToDollar.get(i), from.Value + ""));
-            //setting prop
-            t1v.setTextColor(Color.BLACK);
-            t1v.setGravity(Gravity.CENTER);
-            t2v.setTextColor(Color.BLACK);
-            t2v.setGravity(Gravity.CENTER);
-            //adding to row
-            tbrow.addView(t2v);
-            tbrow.addView(t1v);
-            stk.addView(tbrow);
         }
+        viewCountryadapter adapter = new viewCountryadapter(this, R.layout.viewcountrylist, spinnerItems);
 
+        listView.setAdapter(adapter);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-    //    getMenuInflater().inflate(R.menu.menu_view_country, menu);
+        getMenuInflater().inflate(R.menu.menu_view_country, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

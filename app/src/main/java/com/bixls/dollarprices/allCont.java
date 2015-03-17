@@ -63,6 +63,8 @@ public class allCont extends Fragment {
 
             }
         }
+
+
         ListCustomAdapter adapter = new ListCustomAdapter(context, R.layout.list_item, spinnerItems);
 
         listView.setAdapter(adapter);

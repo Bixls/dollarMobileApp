@@ -2,8 +2,10 @@ package com.bixls.dollarprices;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +37,9 @@ import java.util.HashMap;
 public class CountryAdapter {
     private SharedPreferences mPreferences;
 
+
+    //anony will be false if i want to show some dialogs
+
     Context context;
     View RootView;
    ArrayList<Country> Countries=new ArrayList<Country>();
@@ -54,7 +59,7 @@ public class CountryAdapter {
           }
       }
         else {
-              SyncValues();
+              SyncValues(true);
               Log.e("found", "not found");
 
       }
@@ -109,22 +114,33 @@ public class CountryAdapter {
                 return CodeList;
     }
     }
-
-
-    void SyncValuesWithInterface(View rootView)
+    public ArrayList<Drawable>  getFlags(Country Except)
     {
-        SyncValues();
+        ArrayList<Drawable> CodeList = new ArrayList<Drawable>();
+
+        for (int i = 0; i < Countries.size(); i++) {
+            if (Countries.get(i) != Except) {
+                CodeList.add(Countries.get(i).Flag);
+            }
+        }
+            return CodeList;
+    }
+
+    void SyncValuesWithInterface(View rootView,boolean anony)
+    {
+
+        SyncValues(anony);
         RootView=rootView;
     }
-    void SyncValues()
+    void SyncValues(Boolean anony)
     {
-        GetDataFromServer getDataFromServer = new GetDataFromServer();
+        GetDataFromServer getDataFromServer = new GetDataFromServer(anony);
         getDataFromServer.execute();
 
 
     }
 
-    void SyncValuesCashed(HashMap<String, String> Values)
+    void SyncValuesCashed(HashMap<String, String> Values,boolean anony)
     {
         SharedPreferences.Editor editor = mPreferences.edit();
         for(int i=0;i<Countries.size();i++){
@@ -142,10 +158,20 @@ public class CountryAdapter {
         editor.putString("time",currentDateandTime);
         editor.putString("valid","true");
         editor.commit();
-        Toast.makeText(context, context.getResources().getString(R.string.SaveMsg), Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(context, DollarWidget.class);
+        i.setAction(DollarWidget.UPDATE_ACTION);
+        context.sendBroadcast(i);
+
+
+        //sync the widgit
+        if(!anony) {
+            //TODO change this true
+            Toast.makeText(context, context.getResources().getString(R.string.SaveMsg), Toast.LENGTH_SHORT).show();
+        }
+
         if(RootView!=null)
         {
-            MainActivity.UpdateView(RootView);
+            MainActivity.HomeFragment.UpdateView(RootView);
         }
 
     }
@@ -162,6 +188,19 @@ public class CountryAdapter {
             }
 
         return  null;
+    }
+    int GetCountryIDByCode(String code){
+
+
+        for(int i=0;i<Countries.size();i++){
+
+            if (code.equals(Countries.get(i).Code))
+            {
+                return i;
+            }
+        }
+
+        return  0;
     }
     Country GetCountryByName(String code){
 
@@ -193,16 +232,28 @@ public class CountryAdapter {
     //Get data
     private class GetDataFromServer extends AsyncTask<Object, Void, JSONObject> {
 
+
+       public boolean Anony;
+      GetDataFromServer(boolean anony)
+      {
+        Anony=anony;
+      }
+
+
+
+        
+
         ProgressDialog progDailog = new ProgressDialog(context);
         protected void onPreExecute() {
             super.onPreExecute();
-            progDailog.setMessage("Loading...");
-            progDailog.setIndeterminate(false);
-            progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progDailog.setCancelable(true);
-            progDailog.show();
+            if (!Anony) {
+                progDailog.setMessage("Loading...");
+                progDailog.setIndeterminate(false);
+                progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progDailog.setCancelable(true);
+                progDailog.show();
+            }
         }
-
 
 
         @Override
@@ -212,10 +263,11 @@ public class CountryAdapter {
 
         @Override
         protected void onPostExecute(JSONObject result) {
-            handleResponse(result);
+            handleResponse(result,Anony);
             try {
-                //TODO Check this error for first time opening
-                progDailog.cancel();
+                if (!Anony) {
+                    progDailog.cancel();
+                }
             }catch (Exception e)
             {
                 Log.e("Exception in",e.toString());
@@ -269,7 +321,7 @@ public class CountryAdapter {
 
     }
 
-    public void handleResponse(JSONObject result) {
+    public void handleResponse(JSONObject result,boolean anony) {
 
         if (result == null) {
             Log.e("Error in","Response is empty");
@@ -286,7 +338,7 @@ public class CountryAdapter {
 
 
                 Log.e("json is", result.toString());
-                SyncValuesCashed(Values);
+                SyncValuesCashed(Values,anony);
 
             } catch (JSONException e) {
                 Log.e("", "Exception caught!", e);
