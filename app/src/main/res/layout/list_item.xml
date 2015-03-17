@@ -14,6 +14,7 @@
         android:layout_width="136dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
+        android:textAppearance="@style/Cname"
         android:layout_gravity="center_vertical"
         android:layout_weight="1" />
 
