@@ -240,6 +240,9 @@ public class CountryAdapter {
       }
 
 
+
+        
+
         ProgressDialog progDailog = new ProgressDialog(context);
         protected void onPreExecute() {
             super.onPreExecute();

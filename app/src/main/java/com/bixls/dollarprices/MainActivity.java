@@ -26,7 +26,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class MainActivity extends ActionBarActivity
@@ -55,6 +57,7 @@ public class MainActivity extends ActionBarActivity
 
 
 
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -77,6 +80,7 @@ public class MainActivity extends ActionBarActivity
             startActivity(intent);
             finish();
         }
+
 
         mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,MainActivity.this);
 
@@ -298,6 +302,29 @@ public class MainActivity extends ActionBarActivity
                     mCountryAdapter.SyncValuesWithInterface(rootView,false);
                 }
             });
+
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd   HH:mm:ss");
+            String currentDateandTime = sdf.format(new Date());
+
+            try {
+             Date old=   sdf.parse(mPreferences.getString("time",""));
+             Date now=  new Date();
+             long dif=now.getTime()-old.getTime();
+                Log.e("Time Diffrence is",old.getTime()+"");
+                Log.e("Time Diffrence is",now.getTime()+"");
+                Log.e("time Diffrence is,",dif+"");
+                if(dif>600000)
+                {
+                    mCountryAdapter.SyncValuesWithInterface(rootView,true);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+
+
 
             return rootView;
         }
