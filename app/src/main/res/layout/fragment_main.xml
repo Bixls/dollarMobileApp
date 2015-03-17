@@ -27,39 +27,26 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:gravity="center"
-        android:layout_alignEnd="@id/equaltextview"
-        android:layout_alignRight="@+id/equaltextview"
+
+        android:id="@+id/linearLayout"
         android:layout_alignParentEnd="false"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout"
-        android:layout_alignBottom="@+id/lastSync">
+        android:layout_alignBottom="@+id/lastSync"
+        android:layout_toLeftOf="@+id/equaltextview"
+        android:layout_alignStart="@id/equaltextview"
+        android:gravity="right">
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <Spinner
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/FlagTo"
-            android:src="@drawable/egp"
-            android:layout_marginBottom="7dp"
-            android:background="@drawable/flagback" />
+            android:id="@+id/spinner2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/CountryMainCurr"
-            android:text="Nto"
-            android:id="@+id/toAmount"
-            />
-
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/CountryMain"
-        android:text="toCountry"
-        android:id="@+id/ToTextType"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="25dp" />
+            android:layout_alignParentStart="true"
+            android:spinnerMode="dialog"
+            android:background="@drawable/emty" />
 
     </LinearLayout>
 
@@ -69,37 +56,23 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:gravity="center"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@id/equaltextview"
         android:layout_alignParentStart="false"
         android:layout_alignParentRight="true"
-        android:layout_alignStart="@id/equaltextview"
-        android:layout_alignBottom="@+id/lastSync">
+        android:layout_alignBottom="@+id/lastSync"
+        android:layout_toRightOf="@+id/equaltextview"
+        android:layout_toEndOf="@id/equaltextview"
+        android:gravity="left">
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <Spinner
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/FlagFrom"
-            android:src="@drawable/kwd"
-            android:layout_marginBottom="7dp"
-            android:background="@drawable/flagback" />
-
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/CountryMainCurr"
-        android:text="Nfrin"
-        android:id="@+id/fromAmount" />
-
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/CountryMain"
-        android:text="fromCounty"
-        android:id="@+id/FromTextType"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="25dp" />
+            android:id="@+id/spinner1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:spinnerMode="dialog"
+            android:background="@drawable/emty" />
     </LinearLayout>
 
     <TextView
@@ -131,6 +104,7 @@
         android:layout_marginTop="20dp"
         android:drawableLeft="@drawable/sync"
         android:background="@drawable/buttonshape" />
+
 
 
 

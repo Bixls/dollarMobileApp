@@ -1,32 +1,29 @@
 package com.bixls.dollarprices;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
- * Created by Ahmed on 3/9/2015.
+ * Created by Ahmed on 3/17/2015.
  */
-public class SpinnerCustomAdapter  extends ArrayAdapter<SpinnerItem> {
+
+public class SpinnerHomepageAdapter  extends ArrayAdapter<SpinnerItemHome> {
 
     Context mContext;
     int layoutResourceId;
-    ArrayList<SpinnerItem> spinnerItemArrayList = null;
-    SpinnerItem spinnerItem=null;
+    ArrayList<SpinnerItemHome> spinnerItemArrayList = null;
+    SpinnerItemHome spinnerItem=null;
     LayoutInflater inflater;
 
-    public SpinnerCustomAdapter(Context mContext, int layoutResourceId, ArrayList<SpinnerItem> spinnerItems) {
+    public SpinnerHomepageAdapter(Context mContext, int layoutResourceId, ArrayList<SpinnerItemHome> spinnerItems) {
         super(mContext, layoutResourceId, spinnerItems);
         this.layoutResourceId = layoutResourceId;
         this.mContext = mContext;
@@ -49,17 +46,23 @@ public class SpinnerCustomAdapter  extends ArrayAdapter<SpinnerItem> {
     public View getCustomViewFirst(int position, View convertView, ViewGroup parent) {
 
         /********** Inflate spinner_rows.xml file for each row ( Defined below ) ************/
-        View row = inflater.inflate(R.layout.spiner_item, parent, false);
+        View row = inflater.inflate(R.layout.spinerhomepage, parent, false);
 
         /***** Get each Model object from Arraylist ********/
         spinnerItem=null;
-        spinnerItem = (SpinnerItem) spinnerItemArrayList.get(position);
+        spinnerItem = (SpinnerItemHome) spinnerItemArrayList.get(position);
 
         TextView Name=(TextView) row.findViewById(R.id.Name);
+        TextView Value=(TextView) row.findViewById(R.id.Value);
         ImageView flag= (ImageView)  row.findViewById(R.id.Flag);
-        Name.setText(spinnerItem.Name);
+        Name.setText(spinnerItem.Curshort);
         flag.setImageDrawable(spinnerItem.Flag);
 
+
+
+
+
+        Value.setText(spinnerItem.Value);
         return row;
     }
 
@@ -70,11 +73,11 @@ public class SpinnerCustomAdapter  extends ArrayAdapter<SpinnerItem> {
 
         /***** Get each Model object from Arraylist ********/
         spinnerItem=null;
-        spinnerItem = (SpinnerItem) spinnerItemArrayList.get(position);
+        spinnerItem = (SpinnerItemHome) spinnerItemArrayList.get(position);
 
         TextView Name=(TextView) row.findViewById(R.id.Name);
         ImageView flag= (ImageView)  row.findViewById(R.id.Flag);
-        Name.setText(spinnerItem.Name);
+        Name.setText(spinnerItem.CurLong);
         flag.setImageDrawable(spinnerItem.Flag);
 
         return row;
