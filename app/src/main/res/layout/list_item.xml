@@ -4,7 +4,9 @@
     android:showDividers="middle"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:weightSum="1">
+    android:weightSum="1"
+
+    >
 
 
     <TextView

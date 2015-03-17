@@ -2,13 +2,11 @@
 <resources>
 
     <string name="app_name">        اسعار الدولار</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">        اسعار الدولار</string>
-    <string name="action_settings">about</string>
+
     <string name="title_activity_view_country">ViewCountry</string>
     <string name="hello_world">Hello world!</string>
 
@@ -30,6 +28,9 @@
     <string name="HomeSettings">اعدادات الرئيسية</string>
     <string name="FirstTime">        اهلا بك</string>
     <string name="DollarPricesIn">اسعار العملات في</string>
+    <string name="DollarPricesInsmall">
+اسعار الدولار والعملات العربية اليوم بالمقارنة ب
+    </string>
     <string name="currency">       العملة</string>
     <string name="currencywith">ألسعر الحالي ب</string>
     <string name="Save">حفظ</string>
@@ -80,5 +81,6 @@
     <string name="appwidget_text">7.6251</string>
     <string name="add_widget">Add widget</string>
     <string name="configure">Configure</string>
+    <string name="title_activity_test">Test</string>
 
 </resources>

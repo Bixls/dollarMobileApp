@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -109,7 +110,17 @@ public class CountryAdapter {
                 return CodeList;
     }
     }
+    public ArrayList<Drawable>  getFlags(Country Except)
+    {
+        ArrayList<Drawable> CodeList = new ArrayList<Drawable>();
 
+        for (int i = 0; i < Countries.size(); i++) {
+            if (Countries.get(i) != Except) {
+                CodeList.add(Countries.get(i).Flag);
+            }
+        }
+            return CodeList;
+    }
 
     void SyncValuesWithInterface(View rootView)
     {
