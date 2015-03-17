@@ -8,11 +8,11 @@ import android.graphics.drawable.Drawable;
 
     public class SpinnerItemHome {
         public String CurLong;
-        public Double Value;
+        public String Value;
         public String Curshort;
         public Drawable Flag;
 
-        public SpinnerItemHome(String curLong,Double value,String curShort,Drawable flag) {
+        public SpinnerItemHome(String curLong,String value,String curShort,Drawable flag) {
             this.CurLong=curLong;
             this.Flag=flag;
             this.Curshort=curShort;

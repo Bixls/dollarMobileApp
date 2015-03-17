@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -56,7 +57,12 @@ public class SpinnerHomepageAdapter  extends ArrayAdapter<SpinnerItemHome> {
         ImageView flag= (ImageView)  row.findViewById(R.id.Flag);
         Name.setText(spinnerItem.Curshort);
         flag.setImageDrawable(spinnerItem.Flag);
-        Value.setText(spinnerItem.Value+"");
+
+
+
+
+
+        Value.setText(spinnerItem.Value);
         return row;
     }
 

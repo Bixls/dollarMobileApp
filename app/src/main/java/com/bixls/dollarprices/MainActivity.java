@@ -13,14 +13,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -38,6 +41,8 @@ public class MainActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+
 
     static   private SharedPreferences mPreferences;
     static   private CountryAdapter mCountryAdapter;
@@ -175,30 +180,35 @@ public class MainActivity extends ActionBarActivity
         }
 
     }
-    public static void Reverse(View rootView)
-    {
-        animateCrystalBall(rootView);
-        String oldFrom=mPreferences.getString("CFrom", "");
-        String oldTo=mPreferences.getString("CTo", "");
-        SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString("CFrom", oldTo);
-        editor.putString("CTo", oldFrom);
-        editor.commit();
-        UpdateView(rootView);
-    }
-    private static void animateCrystalBall(View rootView) {
-
-        AnimationDrawable ballAnimation = (AnimationDrawable)  ((ImageButton)(rootView.findViewById(R.id.equaltextview))).getBackground();
-        if (ballAnimation.isRunning()) {
-            ballAnimation.stop();
-        }
-        ballAnimation.start();
-    }
 
     /**
      * A placeholder fragment containing a simple view.
      */
     public static class HomeFragment extends Fragment {
+
+
+
+        private static void animateCrystalBall(View rootView) {
+
+            AnimationDrawable ballAnimation = (AnimationDrawable)  ((ImageButton)(rootView.findViewById(R.id.equaltextview))).getBackground();
+            if (ballAnimation.isRunning()) {
+                ballAnimation.stop();
+            }
+            ballAnimation.start();
+        }
+
+
+         public static   int defPos=0;
+
+
+        public static void Reverse(Spinner spinner1,Spinner spinner2,View rootView)
+        {
+            animateCrystalBall(rootView);
+            int base=  spinner1.getSelectedItemPosition();
+            int up=spinner2.getSelectedItemPosition();
+            spinner1.setSelection(up);
+            defPos=base;
+        }
 
         private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -210,13 +220,26 @@ public class MainActivity extends ActionBarActivity
             return fragment;
         }
 
-        public void setSpinner(Spinner spinner)
+        public void setSpinner(Spinner spinner,Boolean Type,Country From)
         {
             ArrayList<SpinnerItemHome> spinnerItems = new ArrayList<SpinnerItemHome>();
 
-            for(int i=0;i<mCountryAdapter.Countries.size();i++) {
+            if(Type) {
+                for (int i = 0; i < mCountryAdapter.Countries.size(); i++) {
 
-                    spinnerItems.add(new SpinnerItemHome(mCountryAdapter.Countries.get(i).CurFull,mCountryAdapter.Countries.get(i).Value,mCountryAdapter.Countries.get(i).CurShort, mCountryAdapter.Countries.get(i).Flag));
+                    spinnerItems.add(new SpinnerItemHome(mCountryAdapter.Countries.get(i).CurFull,"1", mCountryAdapter.Countries.get(i).CurShort, mCountryAdapter.Countries.get(i).Flag));
+
+                }
+            }else
+            {
+
+                DecimalFormat df = new DecimalFormat("#0.0000");
+
+                for (int i = 0; i < mCountryAdapter.Countries.size(); i++) {
+
+                    spinnerItems.add(new SpinnerItemHome(mCountryAdapter.Countries.get(i).CurFull,  df.format(mCountryAdapter.Countries.get(i).Value/From.Value), mCountryAdapter.Countries.get(i).CurShort, mCountryAdapter.Countries.get(i).Flag));
+
+                }
 
             }
 
@@ -237,15 +260,34 @@ public class MainActivity extends ActionBarActivity
 
             final Spinner spinner1 = (Spinner)     rootView.findViewById(R.id.spinner1);
             final Spinner spinner2 = (Spinner)     rootView.findViewById(R.id.spinner2);
-            setSpinner(spinner1);
-            setSpinner(spinner2);
-            spinner2.setSelection(1);
+            setSpinner(spinner1,true,null);
+
+
+            spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    setSpinner(spinner2, false, mCountryAdapter.Countries.get(spinner1.getSelectedItemPosition()));
+                    if (position == defPos) {
+                        spinner2.setSelection(defPos+1);
+                    }
+                    else
+                    {
+                        spinner2.setSelection(defPos);
+                    }
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
 
             ((ImageButton)(rootView.findViewById(R.id.equaltextview))).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    Reverse(rootView);
+                    Reverse(spinner1,spinner2,rootView);
                 }
             });
 
