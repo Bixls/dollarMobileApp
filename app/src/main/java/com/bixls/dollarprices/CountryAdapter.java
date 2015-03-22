@@ -40,7 +40,7 @@ public class CountryAdapter {
 
     //anony will be false if i want to show some dialogs
 
-    Context context;
+   static Context context;
     View RootView;
    ArrayList<Country> Countries=new ArrayList<Country>();
 
@@ -59,7 +59,7 @@ public class CountryAdapter {
           }
       }
         else {
-              SyncValues(true);
+             SyncValues(0);
               Log.e("found", "not found");
 
       }
@@ -126,13 +126,13 @@ public class CountryAdapter {
             return CodeList;
     }
 
-    void SyncValuesWithInterface(View rootView,boolean anony)
+    void SyncValuesWithInterface(View rootView,int anony)
     {
 
         SyncValues(anony);
         RootView=rootView;
     }
-    void SyncValues(Boolean anony)
+    void SyncValues(int anony)
     {
         GetDataFromServer getDataFromServer = new GetDataFromServer(anony);
         getDataFromServer.execute();
@@ -140,7 +140,7 @@ public class CountryAdapter {
 
     }
 
-    void SyncValuesCashed(HashMap<String, String> Values,boolean anony)
+    void SyncValuesCashed(HashMap<String, String> Values,int anony)
     {
         SharedPreferences.Editor editor = mPreferences.edit();
         for(int i=0;i<Countries.size();i++){
@@ -164,16 +164,24 @@ public class CountryAdapter {
 
 
         //sync the widgit
-        if(!anony) {
-            //TODO change this true
+        if(anony>0) {
+
             Toast.makeText(context, context.getResources().getString(R.string.SaveMsg), Toast.LENGTH_SHORT).show();
         }
+
 
         if(RootView!=null)
         {
             MainActivity.HomeFragment.UpdateView(RootView);
         }
 
+        if(anony==2)
+        {
+            Intent broadcast = new Intent();
+            broadcast.setAction("finish");
+            context.sendBroadcast(broadcast);
+
+        }
     }
 
     Country GetCountryByCode(String code){
@@ -233,20 +241,15 @@ public class CountryAdapter {
     private class GetDataFromServer extends AsyncTask<Object, Void, JSONObject> {
 
 
-       public boolean Anony;
-      GetDataFromServer(boolean anony)
+       public int Anony;
+      GetDataFromServer(int anony)
       {
         Anony=anony;
       }
-
-
-
-        
-
         ProgressDialog progDailog = new ProgressDialog(context);
         protected void onPreExecute() {
             super.onPreExecute();
-            if (!Anony) {
+            if (Anony>0) {
                 progDailog.setMessage("Loading...");
                 progDailog.setIndeterminate(false);
                 progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -265,12 +268,17 @@ public class CountryAdapter {
         protected void onPostExecute(JSONObject result) {
             handleResponse(result,Anony);
             try {
-                if (!Anony) {
+                if (Anony>0) {
                     progDailog.cancel();
+                    if(result==null)
+                    {
+                        Toast.makeText(context,R.string.BadSync,Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }catch (Exception e)
             {
-                Log.e("Exception in",e.toString());
+             Log.e("Exception in",e.toString());
             }
         }
 
@@ -296,12 +304,13 @@ public class CountryAdapter {
             if (inputStream != null)
                 result = convertInputStreamToString(inputStream);
             else
-                result = "Did not work!";
+                result = null;
 
 
             jsonResponse = new JSONObject(result);
 
         } catch (Exception e) {
+
             Log.d("InputStream", e.getLocalizedMessage());
         }
 
@@ -321,10 +330,10 @@ public class CountryAdapter {
 
     }
 
-    public void handleResponse(JSONObject result,boolean anony) {
+    public void handleResponse(JSONObject result,int anony) {
 
         if (result == null) {
-            Log.e("Error in","Response is empty");
+           Toast.makeText(context,R.string.BadSync,Toast.LENGTH_SHORT);
         } else {
             try {
                 HashMap<String, String> Values = new HashMap<String, String>();
@@ -341,6 +350,7 @@ public class CountryAdapter {
                 SyncValuesCashed(Values,anony);
 
             } catch (JSONException e) {
+
                 Log.e("", "Exception caught!", e);
 
             }

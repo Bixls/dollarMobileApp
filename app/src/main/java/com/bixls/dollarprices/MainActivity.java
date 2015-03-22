@@ -73,16 +73,27 @@ public class MainActivity extends ActionBarActivity
         CountryList countryList=new CountryList();
 
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
+        mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,MainActivity.this);
 
         if(!(mPreferences.contains("CFrom")&&mPreferences.contains("CTo")))
         {
             Intent intent = new Intent(MainActivity.this, SettingFirstTime.class);
             startActivity(intent);
             finish();
+        }else
+        {
+            if((mCountryAdapter.Countries.get(0).Value==0))
+            {
+                Intent intent = new Intent(MainActivity.this, internetFirst.class);
+                startActivity(intent);
+                finish();
+            }
         }
 
 
-        mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,MainActivity.this);
+
+
+
 
 
 
@@ -299,7 +310,7 @@ public class MainActivity extends ActionBarActivity
             ((Button)(rootView.findViewById(R.id.SyncButtom))).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mCountryAdapter.SyncValuesWithInterface(rootView,false);
+                    mCountryAdapter.SyncValuesWithInterface(rootView,1);
                 }
             });
 
@@ -316,7 +327,7 @@ public class MainActivity extends ActionBarActivity
                 Log.e("time Diffrence is,",dif+"");
                 if(dif>600000)
                 {
-                    mCountryAdapter.SyncValuesWithInterface(rootView,true);
+                    mCountryAdapter.SyncValuesWithInterface(rootView,0);
                 }
             }
             catch (Exception e)
