@@ -250,11 +250,16 @@ public class CountryAdapter {
         protected void onPreExecute() {
             super.onPreExecute();
             if (Anony>0) {
-                progDailog.setMessage("Loading...");
-                progDailog.setIndeterminate(false);
-                progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                progDailog.setCancelable(true);
-                progDailog.show();
+           try {
+               progDailog.setMessage("Loading...");
+               progDailog.setIndeterminate(false);
+               progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+               progDailog.setCancelable(true);
+               progDailog.show();
+           }catch (Exception E)
+           {
+               Log.e("Cant show progress dialaog",E.toString());
+           }
             }
         }
 

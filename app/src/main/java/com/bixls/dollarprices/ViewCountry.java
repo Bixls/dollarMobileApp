@@ -1,5 +1,6 @@
 package com.bixls.dollarprices;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -101,6 +102,12 @@ public class ViewCountry extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+
+        if(id==R.id.action_example)
+        {
+            Intent intent = new Intent(ViewCountry.this, about.class);
+            startActivity(intent);
+        }
 
 
         return super.onOptionsItemSelected(item);
