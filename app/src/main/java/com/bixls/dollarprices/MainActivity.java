@@ -29,6 +29,8 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 
 public class MainActivity extends ActionBarActivity
@@ -54,6 +56,8 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
 
 
@@ -168,6 +172,11 @@ public class MainActivity extends ActionBarActivity
 
         //noinspection SimplifiableIfStatement
 
+        if(id==R.id.action_example)
+        {
+            Intent intent = new Intent(MainActivity.this, about.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -270,6 +279,11 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
+            //Ad start
+            AdView mAdView = (AdView)rootView.findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+             //Ad End
 
             animateCrystalBall(rootView);
 
