@@ -23,6 +23,9 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
@@ -62,6 +65,14 @@ public class Calculator extends Fragment {
         CountryList countryList=new CountryList();
         mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,context);
          final  View rootView = inflater.inflate(R.layout.fragment_calculator, container, false);
+
+
+
+        //Ad start
+        AdView mAdView = (AdView)rootView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        //Ad End
 
 
         final Spinner spinner1 = (Spinner)     rootView.findViewById(R.id.spinner);
