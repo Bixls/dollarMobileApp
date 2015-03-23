@@ -29,6 +29,8 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 
 public class MainActivity extends ActionBarActivity
@@ -58,6 +60,8 @@ public class MainActivity extends ActionBarActivity
 
 
 
+
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -73,16 +77,27 @@ public class MainActivity extends ActionBarActivity
         CountryList countryList=new CountryList();
 
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
+        mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,MainActivity.this);
 
         if(!(mPreferences.contains("CFrom")&&mPreferences.contains("CTo")))
         {
             Intent intent = new Intent(MainActivity.this, SettingFirstTime.class);
             startActivity(intent);
             finish();
+        }else
+        {
+            if((mCountryAdapter.Countries.get(0).Value==0))
+            {
+                Intent intent = new Intent(MainActivity.this, internetFirst.class);
+                startActivity(intent);
+                finish();
+            }
         }
 
 
-        mCountryAdapter = new CountryAdapter(countryList.init(getResources()),mPreferences,MainActivity.this);
+
+
+
 
 
 
@@ -157,6 +172,11 @@ public class MainActivity extends ActionBarActivity
 
         //noinspection SimplifiableIfStatement
 
+        if(id==R.id.action_example)
+        {
+            Intent intent = new Intent(MainActivity.this, about.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -259,6 +279,11 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             final View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
+            //Ad start
+            AdView mAdView = (AdView)rootView.findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+             //Ad End
 
             animateCrystalBall(rootView);
 
@@ -299,7 +324,7 @@ public class MainActivity extends ActionBarActivity
             ((Button)(rootView.findViewById(R.id.SyncButtom))).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mCountryAdapter.SyncValuesWithInterface(rootView,false);
+                    mCountryAdapter.SyncValuesWithInterface(rootView,1);
                 }
             });
 
@@ -316,7 +341,7 @@ public class MainActivity extends ActionBarActivity
                 Log.e("time Diffrence is,",dif+"");
                 if(dif>600000)
                 {
-                    mCountryAdapter.SyncValuesWithInterface(rootView,true);
+                    mCountryAdapter.SyncValuesWithInterface(rootView,0);
                 }
             }
             catch (Exception e)

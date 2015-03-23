@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="app_name">        اسعار الدولار</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">        اسعار الدولار</string>
-
     <string name="title_activity_view_country">ViewCountry</string>
     <string name="hello_world">Hello world!</string>
+
+
+    <string name="appVersion">
+      Version 1.0
+    </string>
+
+        <string name="appabout">
+     This application was developed by Bixls.com
+            \n © 2015 all rights reserved.
+    </string>
+
+
 
     <string-array name="drawer_Array">
         <item>الرئيسية</item>
@@ -20,6 +30,9 @@
     <string name="equal">=</string>
     <string name="Sync">        تحديث</string>
     <string name="SyncMsg">تم التحديث بنجاح</string>
+    <string name="FirstTimeSync">        من فضلك قم بالتأكد من الاتصال بالانترنت ليتم تحديث قاعده البيانات لاول مره</string>
+    <string name="FirstTimeSync2">بعد التأكد اضغط على تحديث مره اخرى</string>
+    <string name="BadSync">        خطأ في عملية التحديث</string>
     <string name="lastSync">    اخر تحيث</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="from">        من</string>
@@ -28,9 +41,7 @@
     <string name="HomeSettings">اعدادات الرئيسية</string>
     <string name="FirstTime">        اهلا بك</string>
     <string name="DollarPricesIn">اسعار العملات في</string>
-    <string name="DollarPricesInsmall">
-اسعار الدولار والعملات العربية اليوم بالمقارنة ب
-    </string>
+    <string name="DollarPricesInsmall">اسعار الدولار والعملات العربية اليوم بالمقارنة ب</string>
     <string name="currency">       العملة</string>
     <string name="currencywith">ألسعر الحالي ب</string>
     <string name="Save">حفظ</string>
@@ -82,5 +93,12 @@
     <string name="add_widget">Add widget</string>
     <string name="configure">Configure</string>
     <string name="title_activity_test">Test</string>
+    <string name="title_activity_first_time">FirstTime</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_internet_first">internetFirst</string>
+    <string name="title_activity_about">About us</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.bixls.dollarprices;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -17,6 +18,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
@@ -33,6 +37,12 @@ public class ViewCountry extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_country);
+
+        //Ad start
+        AdView mAdView = (AdView)findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        //Ad End
 
 
         Bundle extras = getIntent().getExtras();
@@ -101,6 +111,12 @@ public class ViewCountry extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+
+        if(id==R.id.action_example)
+        {
+            Intent intent = new Intent(ViewCountry.this, about.class);
+            startActivity(intent);
+        }
 
 
         return super.onOptionsItemSelected(item);
