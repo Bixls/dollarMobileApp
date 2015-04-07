@@ -3,6 +3,7 @@ package com.bixls.dollarprices;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -29,13 +30,21 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+    InterstitialAd mInterstitialAd;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -46,17 +55,45 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
+     private int afterAdd=0;
 
 
     static   private SharedPreferences mPreferences;
     static   private CountryAdapter mCountryAdapter;
+    /**
+     * Enum used to identify the tracker that needs to be used for tracking.
+     *
+     * A single tracker is usually enough for most purposes. In case you do need multiple trackers,
+     * storing them all in Application object helps ensure that they are created only once per
+     * application instance.
+     */
+    public enum TrackerName {
+        APP_TRACKER, // Tracker used only in this app.
+        GLOBAL_TRACKER, // Tracker used by all the apps from a company. eg: roll-up tracking.
+        ECOMMERCE_TRACKER, // Tracker used by all ecommerce transactions from a company.
+    }
 
+    HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
 
+    synchronized Tracker getTracker(TrackerName trackerId) {
+        if (!mTrackers.containsKey(trackerId)) {
+
+            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+            Tracker t = (trackerId == TrackerName.APP_TRACKER) ? analytics.newTracker(R.xml.global_tracker)
+                    : analytics.newTracker(R.xml.global_tracker)  ;
+            mTrackers.put(trackerId, t);
+
+        }
+        return mTrackers.get(trackerId);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId( getString(R.string.Intestical_ad));
+        requestNewInterstitial();
 
+        setContentView(R.layout.activity_main);
 
 
 
@@ -72,6 +109,18 @@ public class MainActivity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
 
+
+
+
+
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                requestNewInterstitial();
+
+            }
+        });
 
 
         CountryList countryList=new CountryList();
@@ -94,17 +143,23 @@ public class MainActivity extends ActionBarActivity
             }
         }
 
+        Tracker t = this.getTracker(
+                TrackerName.APP_TRACKER);
 
+// Set screen name.
+        t.setScreenName("Main Screen");
 
-
-
-
-
-
-
-
-
+// Send a screen view.
+        t.send(new HitBuilders.ScreenViewBuilder().build());
     }
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("YOUR_DEVICE_HASH")
+                .build();
+
+        mInterstitialAd.loadAd(adRequest);
+    }
+
 
 
 
@@ -118,6 +173,9 @@ public class MainActivity extends ActionBarActivity
             fragmentManager.beginTransaction()
                     .replace(R.id.container, HomeFragment.newInstance(position))
                     .commit();
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                }
                 break;
             case 1:
                 fragmentManager.beginTransaction()
@@ -128,13 +186,22 @@ public class MainActivity extends ActionBarActivity
                fragmentManager.beginTransaction()
                        .replace(R.id.container, Calculator.newInstance(position,mPreferences,MainActivity.this))
                        .commit();
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                }
                 break;
             case 3:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, allCont.newInstance(position,mPreferences,MainActivity.this))
                         .commit();
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                }
                 break;
+
         }
+
+
     }
 
     public void onSectionAttached(int number) {

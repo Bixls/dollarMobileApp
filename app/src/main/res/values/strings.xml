@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="app_name">        اسعار الدولار</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2839693431129409/5370740372</string>
+    <string name="Intestical_ad">ca-app-pub-2839693431129409/8457781178</string>
+
+    <string name="banner_ad_unit_id2">ca-app-pub-2839693431129409/8457781178</string>
+    <string name="Intestical_ad2">ca-app-pub-3940256099942544/1033173712</string>
+
+    <string name="app_name">Dollar Prices Today</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">        اسعار الدولار</string>
+    <string name="action_example">Dollar Prices</string>
     <string name="title_activity_view_country">ViewCountry</string>
     <string name="hello_world">Hello world!</string>
 
@@ -21,73 +26,73 @@
 
 
     <string-array name="drawer_Array">
-        <item>الرئيسية</item>
-        <item>            اعدادات</item>
-        <item>حساب قيم التحويل</item>
-        <item>اسعار الدولار في البلاد العربية</item>
+        <item>Home</item>
+        <item>Settings</item>
+        <item>Calculator</item>
+        <item>Prices Tables</item>
     </string-array>
 
     <string name="equal">=</string>
-    <string name="Sync">        تحديث</string>
-    <string name="SyncMsg">تم التحديث بنجاح</string>
-    <string name="FirstTimeSync">        من فضلك قم بالتأكد من الاتصال بالانترنت ليتم تحديث قاعده البيانات لاول مره</string>
-    <string name="FirstTimeSync2">بعد التأكد اضغط على تحديث مره اخرى</string>
-    <string name="BadSync">        خطأ في عملية التحديث</string>
-    <string name="lastSync">    اخر تحيث</string>
+    <string name="Sync"> Sync</string>
+    <string name="SyncMsg">Successfully synced</string>
+    <string name="FirstTimeSync"> Please make sure you are connected to the internet to sync data for the first time</string>
+    <string name="FirstTimeSync2">after checking please click on sync again</string>
+    <string name="BadSync">A problem in syncing process</string>
+    <string name="lastSync">Last sync</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="from">        من</string>
-    <string name="to">        إالى</string>
-    <string name="calculate">حساب</string>
-    <string name="HomeSettings">اعدادات الرئيسية</string>
-    <string name="FirstTime">        اهلا بك</string>
-    <string name="DollarPricesIn">اسعار العملات في</string>
-    <string name="DollarPricesInsmall">اسعار الدولار والعملات العربية اليوم بالمقارنة ب</string>
-    <string name="currency">       العملة</string>
-    <string name="currencywith">ألسعر الحالي ب</string>
-    <string name="Save">حفظ</string>
-    <string name="SaveMsg">تم الحفظ بنجاح</string>
-    <string name="USD">الولايات المتحده الامريكية</string>
-    <string name="USD_short">دولار</string>
-    <string name="USD_Full">الدولار الأمريكي</string>
-    <string name="EGP">        مصر</string>
-    <string name="EGP_short">      جنيه</string>
-    <string name="EGP_Full">       الجنيه المصري</string>
-    <string name="SAR">السعودية</string>
-    <string name="SAR_short">ريال</string>
-    <string name="SAR_Full">الريال السعودي</string>
-    <string name="KWD">الكويت</string>
-    <string name="KWD_short">دينار</string>
-    <string name="KWD_Full">الدينار الكويتي</string>
-    <string name="QAR">قطر</string>
-    <string name="QAR_short">ريال</string>
-    <string name="QAR_Full">الريال القطري</string>
-    <string name="JOD">الاردن</string>
-    <string name="JOD_short">دينار</string>
-    <string name="JOD_Full">الدينار الاردني</string>
-    <string name="BHD">البحرين</string>
-    <string name="BHD_short">دينار</string>
-    <string name="BHD_Full">الدينار البحريني</string>
-    <string name="AED">الإمارات</string>
-    <string name="AED_short">درهم</string>
-    <string name="AED_Full">االدرهم الاماراتي</string>
-    <string name="LBP">لبنان</string>
-    <string name="LBP_short">ليرة</string>
-    <string name="LBP_Full">الليرة اللبنانية</string>
-    <string name="LYD">لبيا</string>
-    <string name="LYD_short">دينار</string>
-    <string name="LYD_Full">الدينار الليبي</string>
-    <string name="TND">تونس</string>
-    <string name="TND_short">دينار</string>
-    <string name="TND_Full">الدينار التونيسي</string>
-    <string name="YER">اليمن</string>
-    <string name="YER_short">ريال</string>
-    <string name="YER_Full">الريال اليمني</string>
-    <string name="SYP">سوريا</string>
-    <string name="SYP_short">ليرة</string>
-    <string name="SYP_Full">الليرة السورية</string>
-    <string name="DZD">الجزائر</string>
-    <string name="DZD_short">دينار</string>
-    <string name="DZD_Full">االدينار الجزائري</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="calculate">Calculate</string>
+    <string name="HomeSettings">Home Settings</string>
+    <string name="FirstTime">  Welcome</string>
+    <string name="DollarPricesIn">Dollar prices in</string>
+    <string name="DollarPricesInsmall">Dollar prices and other countries today in</string>
+    <string name="currency">Currency</string>
+    <string name="currencywith">Today\'s price</string>
+    <string name="Save">Save</string>
+    <string name="SaveMsg">Saved successful </string>
+    <string name="USD">USA</string>
+    <string name="USD_short">USD</string>
+    <string name="USD_Full">Dollar</string>
+    <string name="EGP">Egypt</string>
+    <string name="EGP_short"> EGP</string>
+    <string name="EGP_Full"> EGP</string>
+    <string name="SAR">KSA</string>
+    <string name="SAR_short">SAR</string>
+    <string name="SAR_Full">SAR</string>
+    <string name="KWD">Kuwait</string>
+    <string name="KWD_short">KWD</string>
+    <string name="KWD_Full">KWD</string>
+    <string name="QAR">Qatar</string>
+    <string name="QAR_short">QAR</string>
+    <string name="QAR_Full">QAR</string>
+    <string name="JOD">Jordan</string>
+    <string name="JOD_short">JOD</string>
+    <string name="JOD_Full">JOD</string>
+    <string name="BHD">Bahrain</string>
+    <string name="BHD_short">BHD</string>
+    <string name="BHD_Full">BHD</string>
+    <string name="AED">UAE</string>
+    <string name="AED_short">AED</string>
+    <string name="AED_Full">AED</string>
+    <string name="LBP">Lebanon</string>
+    <string name="LBP_short">LBP</string>
+    <string name="LBP_Full">LBP</string>
+    <string name="LYD">Labia</string>
+    <string name="LYD_short">LYD</string>
+    <string name="LYD_Full">LYD</string>
+    <string name="TND">Tunisia</string>
+    <string name="TND_short">TND</string>
+    <string name="TND_Full">TND</string>
+    <string name="YER">Yemen</string>
+    <string name="YER_short">YER</string>
+    <string name="YER_Full">YER</string>
+    <string name="SYP">Syria</string>
+    <string name="SYP_short">SYP</string>
+    <string name="SYP_Full">SYP</string>
+    <string name="DZD">Algeria</string>
+    <string name="DZD_short">DZD</string>
+    <string name="DZD_Full">DZD</string>
     <string name="title_activity_setting_first_time">SettingFirstTime</string>
     <string name="appwidget_text">7.6251</string>
     <string name="add_widget">Add widget</string>

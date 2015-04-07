@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="banner_ad_unit_id">ca-app-pub-2839693431129409/5370740372</string>
+    <string name="Intestical_ad">ca-app-pub-2839693431129409/8457781178</string>
+
+    <string name="banner_ad_unit_id2">ca-app-pub-2839693431129409/8457781178</string>
+    <string name="Intestical_ad2">ca-app-pub-3940256099942544/1033173712</string>
+
+
+
+    <string name="app_name">        اسعار الدولار</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">        اسعار الدولار</string>
+    <string name="title_activity_view_country">ViewCountry</string>
+    <string name="hello_world">Hello world!</string>
+
+
+    <string name="appVersion">
+      Version 1.0
+    </string>
+
+        <string name="appabout">
+     This application was developed by Bixls.com
+            \n © 2015 all rights reserved.
+    </string>
+
+
+
+    <string-array name="drawer_Array">
+        <item>الرئيسية</item>
+        <item>            اعدادات</item>
+        <item>حساب قيم التحويل</item>
+        <item>اسعار الدولار في البلاد العربية</item>
+    </string-array>
+
+    <string name="equal">=</string>
+    <string name="Sync">        تحديث</string>
+    <string name="SyncMsg">تم التحديث بنجاح</string>
+    <string name="FirstTimeSync">        من فضلك قم بالتأكد من الاتصال بالانترنت ليتم تحديث قاعده البيانات لاول مره</string>
+    <string name="FirstTimeSync2">بعد التأكد اضغط على تحديث مره اخرى</string>
+    <string name="BadSync">        خطأ في عملية التحديث</string>
+    <string name="lastSync">    اخر تحيث</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="from">        من</string>
+    <string name="to">        إالى</string>
+    <string name="calculate">حساب</string>
+    <string name="HomeSettings">اعدادات الرئيسية</string>
+    <string name="FirstTime">        اهلا بك</string>
+    <string name="DollarPricesIn">اسعار العملات في</string>
+    <string name="DollarPricesInsmall">اسعار الدولار والعملات العربية اليوم بالمقارنة ب</string>
+    <string name="currency">       العملة</string>
+    <string name="currencywith">ألسعر الحالي ب</string>
+    <string name="Save">حفظ</string>
+    <string name="SaveMsg">تم الحفظ بنجاح</string>
+    <string name="USD">الولايات المتحده الامريكية</string>
+    <string name="USD_short">دولار</string>
+    <string name="USD_Full">الدولار الأمريكي</string>
+    <string name="EGP">        مصر</string>
+    <string name="EGP_short">      جنيه</string>
+    <string name="EGP_Full">       الجنيه المصري</string>
+    <string name="SAR">السعودية</string>
+    <string name="SAR_short">ريال</string>
+    <string name="SAR_Full">الريال السعودي</string>
+    <string name="KWD">الكويت</string>
+    <string name="KWD_short">دينار</string>
+    <string name="KWD_Full">الدينار الكويتي</string>
+    <string name="QAR">قطر</string>
+    <string name="QAR_short">ريال</string>
+    <string name="QAR_Full">الريال القطري</string>
+    <string name="JOD">الاردن</string>
+    <string name="JOD_short">دينار</string>
+    <string name="JOD_Full">الدينار الاردني</string>
+    <string name="BHD">البحرين</string>
+    <string name="BHD_short">دينار</string>
+    <string name="BHD_Full">الدينار البحريني</string>
+    <string name="AED">الإمارات</string>
+    <string name="AED_short">درهم</string>
+    <string name="AED_Full">االدرهم الاماراتي</string>
+    <string name="LBP">لبنان</string>
+    <string name="LBP_short">ليرة</string>
+    <string name="LBP_Full">الليرة اللبنانية</string>
+    <string name="LYD">لبيا</string>
+    <string name="LYD_short">دينار</string>
+    <string name="LYD_Full">الدينار الليبي</string>
+    <string name="TND">تونس</string>
+    <string name="TND_short">دينار</string>
+    <string name="TND_Full">الدينار التونيسي</string>
+    <string name="YER">اليمن</string>
+    <string name="YER_short">ريال</string>
+    <string name="YER_Full">الريال اليمني</string>
+    <string name="SYP">سوريا</string>
+    <string name="SYP_short">ليرة</string>
+    <string name="SYP_Full">الليرة السورية</string>
+    <string name="DZD">الجزائر</string>
+    <string name="DZD_short">دينار</string>
+    <string name="DZD_Full">االدينار الجزائري</string>
+    <string name="title_activity_setting_first_time">SettingFirstTime</string>
+    <string name="appwidget_text">7.6251</string>
+    <string name="add_widget">Add widget</string>
+    <string name="configure">Configure</string>
+    <string name="title_activity_test">Test</string>
+    <string name="title_activity_first_time">FirstTime</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_internet_first">internetFirst</string>
+    <string name="title_activity_about">About us</string>
+
+</resources>
