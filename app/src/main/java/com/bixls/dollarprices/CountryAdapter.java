@@ -258,7 +258,7 @@ public class CountryAdapter {
                progDailog.show();
            }catch (Exception E)
            {
-               Log.e("Cant show progress dialaog",E.toString());
+               Log.e("cant show progress",E.toString());
            }
             }
         }
@@ -266,7 +266,7 @@ public class CountryAdapter {
 
         @Override
         protected JSONObject doInBackground(Object... arg0) {
-            return GET("http://www.dollar-prices-today.com/api.php");
+            return GET("http://dollar-prices-today.com/beta/api2.php");
         }
 
         @Override

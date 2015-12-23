@@ -93,6 +93,97 @@
     <string name="DZD">Algeria</string>
     <string name="DZD_short">DZD</string>
     <string name="DZD_Full">DZD</string>
+
+
+
+
+    <string name="DJF">Djibouti</string>
+    <string name="DJF_short">DJF</string>
+    <string name="DJF_Full">DJF</string>
+
+    <string name="IQD">Iraq</string>
+    <string name="IQD_short">IQD</string>
+    <string name="IQD_Full">IQD</string>
+
+
+    <string name="MAD">Morocco</string>
+    <string name="MAD_short">MAD</string>
+    <string name="MAD_Full">MAD</string>
+
+
+    <string name="OMR">Oman</string>
+    <string name="OMR_short">OMR</string>
+    <string name="OMR_Full">OMR</string>
+
+
+    <string name="SDG">Sudan</string>
+    <string name="SDG_short">SDG</string>
+    <string name="SDG_Full">SDG</string>
+
+
+    <string name="SOS">Somalia</string>
+    <string name="SOS_short">SOS</string>
+    <string name="SOS_Full">SOS</string>
+
+
+    <string name="TRY">Turkey</string>
+    <string name="TRY_short">TRY</string>
+    <string name="TRY_Full">TRY</string>
+
+
+    <string name="RON">Romania</string>
+    <string name="RON_short">RON</string>
+    <string name="RON_Full">RON</string>
+
+    <string name="GBP">United Kingdom</string>
+    <string name="GBP_short">GBP</string>
+    <string name="GBP_Full">GBP</string>
+
+    <string name="EUR">euro</string>
+    <string name="EUR_short">EUR</string>
+    <string name="EUR_Full">EUR</string>
+
+
+    <string name="DEM">Germany</string>
+    <string name="DEM_short">DEM</string>
+    <string name="DEM_Full">DEM</string>
+
+    <string name="ILS">Israel</string>
+    <string name="ILS_short">TRY</string>
+    <string name="ILS_Full">TRY</string>
+
+
+    <string name="ITL">Italy</string>
+    <string name="ITL_short">ITL</string>
+    <string name="ITL_Full">ITL</string>
+
+
+    <string name="RUB">Russia</string>
+    <string name="RUB_short">RUB</string>
+    <string name="RUB_Full">RUB</string>
+
+
+    <string name="SZL">Sweden</string>
+    <string name="SZL_short">SZL</string>
+    <string name="SZL_Full">SZL</string>
+
+
+    <string name="ANG">Holland</string>
+    <string name="ANG_short">ANG</string>
+    <string name="ANG_Full">ANG</string>
+
+
+
+    <string name="CNY">China</string>
+    <string name="CNY_short">CNY</string>
+    <string name="CNY_Full">CNY</string>
+
+
+
+    <string name="NOK">Norway</string>
+    <string name="NOK_short">NOK</string>
+    <string name="NOK_Full">NOK</string>
+
     <string name="title_activity_setting_first_time">SettingFirstTime</string>
     <string name="appwidget_text">7.6251</string>
     <string name="add_widget">Add widget</string>

@@ -32,7 +32,7 @@
         <item>الرئيسية</item>
         <item>            اعدادات</item>
         <item>حساب قيم التحويل</item>
-        <item>اسعار الدولار في البلاد العربية</item>
+        <item>جداول الاسعار في البلاد</item>
     </string-array>
 
     <string name="equal">=</string>
@@ -96,6 +96,102 @@
     <string name="DZD">الجزائر</string>
     <string name="DZD_short">دينار</string>
     <string name="DZD_Full">االدينار الجزائري</string>
+
+
+
+
+    <string name="DJF">جيبوتي</string>
+    <string name="DJF_short">فرنك</string>
+    <string name="DJF_Full">فرنك جيبوتي</string>
+
+    <string name="IQD">العراق</string>
+    <string name="IQD_short">دينار </string>
+    <string name="IQD_Full">دينار عراقي</string>
+
+
+    <string name="MAD">المغرب</string>
+    <string name="MAD_short">درهم</string>
+    <string name="MAD_Full">درهم مغربي</string>
+
+
+    <string name="OMR">عمان</string>
+    <string name="OMR_short">ريال</string>
+    <string name="OMR_Full">ريال عماني</string>
+
+
+    <string name="SDG">السودان</string>
+    <string name="SDG_short">جنية</string>
+    <string name="SDG_Full">جنية سوداني</string>
+
+
+    <string name="SOS">الصومال</string>
+    <string name="SOS_short">شلن</string>
+    <string name="SOS_Full">شلن صومالي</string>
+
+
+
+
+    <string name="TRY">تركيا</string>
+    <string name="TRY_short">اليرة</string>
+    <string name="TRY_Full">الليرة التركية</string>
+
+
+    <string name="RON">رومانيا</string>
+    <string name="RON_short">ليو</string>
+    <string name="RON_Full">الليو الروماني</string>
+
+    <string name="GBP">بريطانيا</string>
+    <string name="GBP_short">جنية</string>
+    <string name="GBP_Full">جنية بريطاني</string>
+
+    <string name="EUR">يورو</string>
+    <string name="EUR_short">يورو</string>
+    <string name="EUR_Full">يورو</string>
+
+
+    <string name="DEM">المانيا</string>
+    <string name="DEM_short">مارك</string>
+    <string name="DEM_Full">مارك الماني</string>
+
+    <string name="ILS">إسرائيل</string>
+    <string name="ILS_short">شيكل</string>
+    <string name="ILS_Full">شيكل إسرائيلي</string>
+
+
+    <string name="ITL">إيطاليا</string>
+    <string name="ITL_short">ليرة</string>
+    <string name="ITL_Full">ليرة إيطالية</string>
+
+
+    <string name="RUB">روسيا</string>
+    <string name="RUB_short">روبيل</string>
+    <string name="RUB_Full">روبيل روسي</string>
+
+
+    <string name="SZL">السويد</string>
+    <string name="SZL_short">كرونا</string>
+    <string name="SZL_Full">كرونا سويدية</string>
+
+
+    <string name="ANG">هولندا</string>
+    <string name="ANG_short">خولدة</string>
+    <string name="ANG_Full">خولدة هولندي</string>
+
+
+
+    <string name="CNY">الصين</string>
+    <string name="CNY_short">يوان</string>
+    <string name="CNY_Full">اليوان الصيني</string>
+
+
+
+    <string name="NOK">النورويج</string>
+    <string name="NOK_short">كرون</string>
+    <string name="NOK_Full">كرون نرويجي</string>
+
+
+
+
     <string name="title_activity_setting_first_time">SettingFirstTime</string>
     <string name="appwidget_text">7.6251</string>
     <string name="add_widget">Add widget</string>
