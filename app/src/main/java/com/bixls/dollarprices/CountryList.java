@@ -114,6 +114,139 @@ public class CountryList {
                 res.getDrawable(R.drawable.dzd)
         ));
 
+
+
+        countries.add(new Country(
+                "DJF",
+                res.getString(R.string.DJF),
+                res.getString(R.string.DJF_Full),
+                res.getString(R.string.DJF_short),
+                res.getDrawable(R.drawable.dj)
+        ));
+        countries.add(new Country(
+                "IQD",
+                res.getString(R.string.IQD),
+                res.getString(R.string.IQD_Full),
+                res.getString(R.string.IQD_short),
+                res.getDrawable(R.drawable.iq)
+        ));
+        countries.add(new Country(
+                "MAD",
+                res.getString(R.string.MAD),
+                res.getString(R.string.MAD_Full),
+                res.getString(R.string.MAD_short),
+                res.getDrawable(R.drawable.mad)
+        ));
+        countries.add(new Country(
+                "OMR",
+                res.getString(R.string.OMR),
+                res.getString(R.string.OMR_Full),
+                res.getString(R.string.OMR_short),
+                res.getDrawable(R.drawable.omr)
+        ));
+        countries.add(new Country(
+                "SDG",
+                res.getString(R.string.SDG),
+                res.getString(R.string.SDG_Full),
+                res.getString(R.string.SDG_short),
+                res.getDrawable(R.drawable.sdg)
+        ));
+        countries.add(new Country(
+                "SOS",
+                res.getString(R.string.SOS),
+                res.getString(R.string.SOS_Full),
+                res.getString(R.string.SOS_short),
+                res.getDrawable(R.drawable.sos)
+        ));
+
+
+
+        countries.add(new Country(
+                "TRY",
+                res.getString(R.string.TRY),
+                res.getString(R.string.TRY_Full),
+                res.getString(R.string.TRY_short),
+                res.getDrawable(R.drawable.tr)
+        ));
+        countries.add(new Country(
+                "RON",
+                res.getString(R.string.RON),
+                res.getString(R.string.RON_Full),
+                res.getString(R.string.RON_short),
+                res.getDrawable(R.drawable.ro)
+        ));
+        countries.add(new Country(
+                "GBP",
+                res.getString(R.string.GBP),
+                res.getString(R.string.GBP_Full),
+                res.getString(R.string.GBP_short),
+                res.getDrawable(R.drawable.gb)
+        ));
+        countries.add(new Country(
+                "EUR",
+                res.getString(R.string.EUR),
+                res.getString(R.string.EUR_Full),
+                res.getString(R.string.EUR_short),
+                res.getDrawable(R.drawable.eu)
+        ));
+        countries.add(new Country(
+                "DEM",
+                res.getString(R.string.DEM),
+                res.getString(R.string.DEM_Full),
+                res.getString(R.string.DEM_short),
+                res.getDrawable(R.drawable.de)
+        ));
+        countries.add(new Country(
+                "ILS",
+                res.getString(R.string.ILS),
+                res.getString(R.string.ILS_Full),
+                res.getString(R.string.ILS_short),
+                res.getDrawable(R.drawable.il)
+        ));
+        countries.add(new Country(
+                "ITL",
+                res.getString(R.string.ITL),
+                res.getString(R.string.ITL_Full),
+                res.getString(R.string.ITL_short),
+                res.getDrawable(R.drawable.it)
+        ));
+
+        countries.add(new Country(
+                "RUB",
+                res.getString(R.string.RUB),
+                res.getString(R.string.RUB_Full),
+                res.getString(R.string.RUB_short),
+                res.getDrawable(R.drawable.ru)
+        ));
+        countries.add(new Country(
+                "SZL",
+                res.getString(R.string.SZL),
+                res.getString(R.string.SZL_Full),
+                res.getString(R.string.SZL_short),
+                res.getDrawable(R.drawable.se)
+        ));
+        countries.add(new Country(
+                "ANG",
+                res.getString(R.string.ANG),
+                res.getString(R.string.ANG_Full),
+                res.getString(R.string.ANG_short),
+                res.getDrawable(R.drawable.nl)
+        ));
+        countries.add(new Country(
+                "CNY",
+                res.getString(R.string.CNY),
+                res.getString(R.string.CNY_Full),
+                res.getString(R.string.CNY_short),
+                res.getDrawable(R.drawable.cn)
+        ));
+
+        countries.add(new Country(
+                "NOK",
+                res.getString(R.string.NOK),
+                res.getString(R.string.NOK_Full),
+                res.getString(R.string.NOK_short),
+                res.getDrawable(R.drawable.no)
+        ));
         return countries;
     }
 }
